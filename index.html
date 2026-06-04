@@ -91,12 +91,17 @@
             border-radius: 50%;
         }
 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         /* HERO SECTION (BANNER PRINCIPAL) */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0, 0, 0, 0.6), #0a0a0a), 
                         url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600') no-repeat center center/cover;
-            height: 480px;
+            height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -164,734 +169,558 @@
         }
 
         .hero-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px var(--cor-destaque-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 81, 0, 0.6);
         }
 
-        /* CATEGORIAS / FILTROS */
-        .filtros-container {
-            max-width: 1200px;
-            margin: 30px auto 10px auto;
-            padding: 0 20px;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        .filtros-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .btn-filtro {
-            background-color: var(--bg-card);
-            color: var(--texto-claro);
-            border: 1px solid #222;
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-weight: 600;
+        /* ✅ MENSAGENS ESPECIAIS */
+        .aviso-logistica {
+            background: linear-gradient(90deg, #222 0%, #1a1a1a 100%);
+            border-left: 4px solid var(--cor-ouro);
+            padding: 12px 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 8px;
             font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            color: var(--cor-ouro);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .aviso-logistica i { font-size: 18px; }
+
+        /* SEÇÃO DE LOGÍSTICA (ENDEREÇO SALVO AUTOMATICAMENTE) */
+        .secao-logistica {
+            max-width: 800px;
+            margin: -30px auto 30px auto;
+            background: #111111;
+            border: 2px solid var(--cor-destaque);
+            border-radius: 16px;
+            padding: 22px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
 
-        .btn-filtro:hover, .btn-filtro.ativo {
-            background-color: var(--cor-destaque);
-            border-color: var(--cor-destaque);
+        .logistica-titulo {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--cor-ouro);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logistica-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .logistica-grid { grid-template-columns: 1fr; }
+        }
+
+        .campo-grupo {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .campo-grupo label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #d0d0d0;
+        }
+
+        .input-text {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
             color: #fff;
-            box-shadow: 0 4px 12px rgba(255, 81, 0, 0.3);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        .input-text:focus {
+            outline: none;
+            border-color: var(--cor-destaque);
+            box-shadow: 0 0 0 2px rgba(255, 81, 0, 0.1);
         }
 
-        /* SEÇÃO DO CARDÁPIO */
-        .cardapio-section {
-            max-width: 1200px;
-            margin: 0 auto 60px auto;
+        /* CARDÁPIO */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
             padding: 0 20px;
-        }
-
-        .categoria-bloco {
-            margin-top: 45px;
         }
 
         .categoria-titulo {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 38px;
-            color: var(--cor-ouro);
-            border-left: 5px solid var(--cor-destaque);
-            padding-left: 15px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        /* GRID PARA ITENS COM FOTO */
-        .grid-produtos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
-        }
-
-        .card-produto {
-            background-color: var(--bg-card);
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #1c1c1c;
-            transition: all 0.3s ease;
+            font-size: 42px;
+            color: var(--cor-destaque);
+            margin: 50px 0 25px;
             display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            align-items: center;
+            gap: 12px;
         }
 
-        .card-produto:hover {
+        .itens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+        .item-card:hover {
             transform: translateY(-5px);
             border-color: var(--cor-destaque);
+            box-shadow: 0 8px 20px rgba(255, 81, 0, 0.15);
         }
 
-        .img-container {
-            width: 100%;
-            height: 190px;
-            overflow: hidden;
-            background-color: #1a1a1a;
+        .item-imagem {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .item-valor {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.8);
+            color: var(--cor-ouro);
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 15px;
         }
 
-        .img-produto {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .item-corpo {
+            padding: 18px;
         }
 
-        .card-produto:hover .img-produto {
-            transform: scale(1.06);
-        }
-
-        .info-produto {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .nome-produto {
-            font-size: 19px;
+        .item-nome {
             font-weight: 700;
-            color: var(--texto-claro);
-            margin-bottom: 6px;
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #fff;
         }
 
-        .desc-produto {
+        .item-desc {
             font-size: 13px;
             color: var(--texto-cinza);
-            margin-bottom: 15px;
-            line-height: 1.4;
+            margin-bottom: 14px;
         }
 
-        /* DROPDOWN DE BEBIDAS */
-        .seletor-sabor {
-            width: 100%;
-            background-color: #222;
-            color: var(--texto-claro);
-            border: 1px solid #333;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            outline: none;
-            cursor: pointer;
-        }
-        .seletor-sabor option {
-            background-color: #141414;
-        }
-
-        .preco-pedido {
+        /* ✅ CONTROLE DE QUANTIDADE */
+        .quantidade-controle {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-top: auto;
-            padding-top: 12px;
-            border-top: 1px solid #1e1e1e;
+            justify-content: space-between;
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 6px 10px;
+        }
+        .qtd-btn {
+            background: var(--cor-destaque);
+            border: none;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .qtd-btn:hover { background: #ff2a00; }
+        .qtd-valor {
+            font-weight: bold;
+            font-size: 16px;
         }
 
-        .preco {
-            font-size: 21px;
+        /* ✅ FORMA DE PAGAMENTO (NÃO SALVA) */
+        .secao-pagamento {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+        .pagamento-titulo {
             color: var(--cor-ouro);
             font-weight: 700;
+            margin-bottom: 15px;
         }
-
-        .btn-pedir {
-            background-color: var(--sucesso);
-            color: #fff;
-            text-decoration: none;
-            padding: 9px 16px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .btn-pedir:hover {
-            background-color: var(--sucesso-hover);
-        }
-
-        /* LISTA PARA ITENS SEM FOTO (DEIXA O SITE LIMPO E COMPLETO) */
-        .lista-itens-sem-foto {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 15px;
-        }
-
-        .item-sem-foto {
-            background-color: var(--bg-card);
-            border-radius: 10px;
-            padding: 16px;
-            border: 1px solid #1a1a1a;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            transition: border-color 0.2s;
-        }
-
-        .item-sem-foto:hover {
-            border-color: #333;
-        }
-
-        .item-sem-foto-info {
-            flex-grow: 1;
-        }
-
-        .item-sem-foto-nome {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--texto-claro);
-            margin-bottom: 4px;
-        }
-
-        .item-sem-foto-desc {
+        .pagamento-aviso {
             font-size: 12px;
             color: var(--texto-cinza);
-            line-height: 1.3;
-        }
-
-        .item-sem-foto-preco-acao {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-            min-width: 100px;
-        }
-
-        /* RODAPÉ */
-        footer {
-            background-color: #050505;
-            padding: 50px 20px;
-            border-top: 2px solid var(--cor-destaque);
-            text-align: center;
-        }
-
-        .footer-info {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 40px;
             margin-bottom: 15px;
         }
 
-        .footer-logo span {
-            color: var(--cor-destaque);
+        /* DADOS DA LOJA */
+        .secao-dados {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #333;
+            text-align: center;
         }
-
-        .footer-info p {
-            margin: 10px 0;
-            color: var(--texto-cinza);
-            font-size: 14px;
-        }
-
-        .footer-info i {
-            color: var(--cor-destaque);
-            margin-right: 6px;
-        }
-
-        .footer-info strong {
+        .dados-titulo {
             color: var(--cor-ouro);
-        }
-
-        /* Logo do Desenvolvedor no Rodapé */
-        .desenvolvedor-container {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #141414;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .desenvolvedor-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #444;
             margin-bottom: 10px;
         }
+        .dados-texto {
+            font-size: 14px;
+            color: var(--texto-cinza);
+            margin: 4px 0;
+        }
 
-        .logo-desenvolvedor {
-            max-width: 130px;
-            height: auto;
+        .btn-whatsapp {
             display: block;
-            opacity: 0.5;
-            transition: all 0.3s ease;
+            width: fit-content;
+            margin: 40px auto;
+            background-color: var(--sucesso);
+            color: #000;
+            font-weight: 800;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp:hover {
+            background-color: var(--sucesso-hover);
+            transform: scale(1.05);
         }
 
-        .logo-desenvolvedor:hover {
-            opacity: 1;
-            transform: scale(1.03);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 48px; }
-            .hero-title-top { font-size: 26px; }
-            .categoria-titulo { font-size: 30px; }
-        }
     </style>
 </head>
 <body>
 
+    <!-- BARRA DE NAVEGAÇÃO -->
     <header>
         <div class="header-container">
             <div class="logo">M&R <span>Lanches</span></div>
-            <div class="status-badge">Aberto 24h</div>
+            <div class="status-badge">
+                <i class="fa-solid fa-circle-check"></i> ABERTO 24H
+            </div>
         </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-title-top">Bateu aquela fome?</span>
-            <h1>A gente resolve!</h1>
-            <p>Os Xis mais gigantes, Pizzas recheadas, Dogs e Picados de Porto Alegre direto na sua casa.</p>
-            <a href="#cardapio" class="hero-btn"><i class="fa-solid fa-utensils"></i> Ver o Cardápio Completo</a>
+            <div class="hero-title-top">O Melhor Sabor</div>
+            <h1>Lanches & Pizzas</h1>
+            <p>Entrega rápida e sabor incomparável na sua porta</p>
+            <a href="#cardapio" class="hero-btn">Ver Cardápio</a>
         </div>
     </section>
 
-    <div class="filtros-container">
-        <button class="btn-filtro ativo" onclick="filtrar('todos', this)">Todos</button>
-        <button class="btn-filtro" onclick="filtrar('xis', this)">Os Gigantes Xis</button>
-        <button class="btn-filtro" onclick="filtrar('dogs', this)">Cachorros-Quentes</button>
-        <button class="btn-filtro" onclick="filtrar('pizzas', this)">Pizzas</button>
-        <button class="btn-filtro" onclick="filtrar('picados', this)">Picados na Caixa</button>
-        <button class="btn-filtro" onclick="filtrar('porcoes', this)">Porções</button>
-        <button class="btn-filtro" onclick="filtrar('bebidas', this)">Bebidas</button>
+    <!-- ✅ MENSAGENS ESTRATÉGICAS -->
+    <div class="aviso-logistica">
+        <i class="fa-solid fa-money-bill-wave"></i>
+        <strong>💡 Vai precisar de troco? Informe o valor da nota no final do pedido, por favor!</strong>
     </div>
 
-    <main class="cardapio-section" id="cardapio">
+    <div class="aviso-logistica">
+        <i class="fa-solid fa-credit-card"></i>
+        <strong>💳 Precisa levar maquininha? É só avisar que levamos até você ;)</strong>
+    </div>
 
-        <div class="categoria-bloco" data-categoria="xis">
-            <h2 class="categoria-titulo">Os Gigantes Xis</h2>
-            <div class="grid-produtos">
-                
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_69346d.png" alt="Xis Carne" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Xis Carne</h3>
-                            <p class="desc-produto">Super prensado! Pão gigante, maionese artesanal M&R, carne bem temperada, queijo derretido, alface e tomate frescos.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 19,90</span>
-                            <button onclick="enviarPedido('1x Xis Carne (R$ 19,90)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
+    <!-- ✅ ENDEREÇO SALVO AUTOMATICAMENTE -->
+    <section class="secao-logistica">
+        <h3 class="logistica-titulo">
+            <i class="fa-solid fa-location-dot"></i> Endereço de Entrega
+        </h3>
+        <div class="logistica-grid">
+            <div class="campo-grupo">
+                <label>Endereço completo (salvo automaticamente)</label>
+                <input type="text" id="enderecoEntrega" class="input-text" placeholder="Rua, Número, Bairro, Complemento">
+            </div>
+            <div class="campo-grupo">
+                <label>Ponto de Referência</label>
+                <input type="text" id="pontoRef" class="input-text" placeholder="Perto de onde?">
+            </div>
+        </div>
+    </section>
+
+    <!-- CARDÁPIO -->
+    <main id="cardapio" class="container">
+
+        <!-- 🥓 PICADOS E PORÇÕES DE FRITAS -->
+        <h2 class="categoria-titulo"><i class="fa-solid fa-pot-food"></i> Picados e Porções</h2>
+        <div class="itens-grid">
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Picado Médio Tradicional</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 90,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
                     </div>
                 </div>
-
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_69346d.png" alt="Xis Coração" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Xis Coração</h3>
-                            <p class="desc-produto">Coração de galinha grelhado no ponto certo, queijo derretendo, milho, ervilha, alface, tomate e maionese da casa.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 28,00</span>
-                            <button onclick="enviarPedido('1x Xis Coração (R$ 28,00)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Picado Pequeno Tradicional</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 80,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
                     </div>
                 </div>
-
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_69346d.png" alt="Xis Strogonoff" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Xis Strogonoff</h3>
-                            <p class="desc-produto">Recheio super cremoso e caprichado de strogonoff de carne legítimo, queijo e batata palha.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 27,00</span>
-                            <button onclick="enviarPedido('1x Xis Strogonoff (R$ 27,00)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Porção Pequena Fritas</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 25,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
                     </div>
                 </div>
-
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Porção Média Fritas</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 30,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Porção Média Bacon Cheddar</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 40,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Porção Pequena Bacon Cheddar</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 30,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Porção Média Coração</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 45,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Porção Pequena Coração</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 35,00</div>
+                    <div class="quantidade-controle" style="margin-top: 10px;">
+                        <span>Quantidade:</span>
+                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="categoria-bloco" data-categoria="dogs">
-            <h2 class="categoria-titulo">Cachorros-Quentes (Dogões)</h2>
-            <div class="lista-itens-sem-foto">
-                
-                <div class="item-sem-foto">
-                    <div class="item-sem-foto-info">
-                        <h3 class="item-sem-foto-nome">Cachorro-Quente Simples</h3>
-                        <p class="item-sem-foto-desc">Pão macio, 1 salsicha selecionada, molho caseiro especial, milho, ervilha, batata palha e maionese.</p>
-                    </div>
-                    <div class="item-sem-foto-preco-acao">
-                        <span class="preco" style="font-size: 18px;">R$ 14,00</span>
-                        <button onclick="enviarPedido('1x Cachorro-Quente Simples (R$ 14,00)')" class="btn-pedir" style="padding: 6px 12px; font-size: 12px;">
-                            <i class="fa-brands fa-whatsapp"></i> Pedir
-                        </button>
-                    </div>
-                </div>
+        <!-- 🍔 XIS, HAMBÚRGUER E TORRADAS -->
+        <h2 class="categoria-titulo"><i class="fa-solid fa-burger"></i> Lanches, Torradas e Hambúrgueres</h2>
+        <div class="itens-grid">
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Carne</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 19,90</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Frango</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 22,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Frango c/ Catupiry</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 24,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Strogonoff</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 27,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Calabresa</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 22,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Bacon</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 24,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Coração</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 28,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Filé</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 29,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Acebolado</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 22,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Torrada Simples</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 10,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Torrada com Carne</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 15,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
 
-                <div class="item-sem-foto">
-                    <div class="item-sem-foto-info">
-                        <h3 class="item-sem-foto-nome">Cachorro-Quente Duplo</h3>
-                        <p class="item-sem-foto-desc">Para quem tem mais fome! Pão de dog caprichado com 2 salsichas, molho artesanal, milho, ervilha, maionese M&R e muita batata palha.</p>
-                    </div>
-                    <div class="item-sem-foto-preco-acao">
-                        <span class="preco" style="font-size: 18px;">R$ 17,00</span>
-                        <button onclick="enviarPedido('1x Cachorro-Quente Duplo (R$ 17,00)')" class="btn-pedir" style="padding: 6px 12px; font-size: 12px;">
-                            <i class="fa-brands fa-whatsapp"></i> Pedir
-                        </button>
-                    </div>
-                </div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Hambúrguer Simples</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 19,90</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Hambúrguer Duplo</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 24,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+        </div>
 
-                <div class="item-sem-foto">
-                    <div class="item-sem-foto-info">
-                        <h3 class="item-sem-foto-nome">Dog Combo Completo</h3>
-                        <p class="item-sem-foto-desc">O rei da madrugada! Cachorro-quente duplo com ingredientes selecionados e um toque especial da casa.</p>
-                    </div>
-                    <div class="item-sem-foto-preco-acao">
-                        <span class="preco" style="font-size: 18px;">R$ 22,00</span>
-                        <button onclick="enviarPedido('1x Dog Combo Completo (R$ 22,00)')" class="btn-pedir" style="padding: 6px 12px; font-size: 12px;">
-                            <i class="fa-brands fa-whatsapp"></i> Pedir
-                        </button>
-                    </div>
-                </div>
+        <!-- 🌭 CACHORRO QUENTE -->
+        <h2 class="categoria-titulo"><i class="fa-solid fa-hotdog"></i> Cachorro Quente</h2>
+        <div class="itens-grid">
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Simples</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 13,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Duplo</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 15,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Calabresa</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 16,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Linguiça</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 17,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Coração</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 19,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Frango</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 18,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+        </div>
 
+        <!-- 🍕 PIZZAS -->
+        <h2 class="categoria-titulo"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
+        <div class="itens-grid">
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Pizza Família</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 90,00</div>
+                    <p class="item-desc">Sabores: Azeitonas, Alho e Óleo, Calabresa, Coração, Portuguesa, Frango c/ Catupiry, Mussarela, 4 Queijos, Bacon, Milho, Strogonoff, Presunto, Napolitana, Moda da Casa, Brócolis, Siciliana.</p>
+                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Pizza Família Combo</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 110,00</div>
+                    <p class="item-desc">Acompanha bebida. Sabores salgados ou doces: Chocolate Preto, Branco, c/ M&M's, Banana c/ Gemada, Prestígio.</p>
+                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Pizza Média</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 65,00</div>
+                    <p class="item-desc">Todos os sabores disponíveis.</p>
+                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-corpo">
+                    <h3 class="item-nome">Pizza Média Combo</h3>
+                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 90,00</div>
+                    <p class="item-desc">Acompanha bebida.</p>
+                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
+                </div>
             </div>
         </div>
 
-        <div class="categoria-bloco" data-categoria="pizzas">
-            <h2 class="categoria-titulo">Pizzas Crocantes e Recheadas</h2>
-            <div class="grid-produtos">
-                
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_693503.png" alt="Pizza Família Combo" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Pizza Família Combo</h3>
-                            <p class="desc-produto">Tamanho gigante! Monte com até 4 sabores da sua preferência (Calabresa, Coração, Quatro Queijos, Chocolate, Prestígio) e acompanha porção de fritas.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 110,00</span>
-                            <button onclick="enviarPedido('1x Pizza Família Combo (R$ 110,00)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_693503.png" alt="Pizza Média Combo" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Pizza Média Combo</h3>
-                            <p class="desc-produto">No tamanho certo para matar sua vontade! Pizza média recheada com ingredientes premium + porção de fritas crocantes.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 90,00</span>
-                            <button onclick="enviarPedido('1x Pizza Média Combo (R$ 90,00)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+        <!-- ✅ FORMA DE PAGAMENTO -->
+        <section class="secao-pagamento">
+            <h3 class="pagamento-titulo"><i class="fa-solid fa-sack-dollar"></i> Forma de Pagamento</h3>
+            <p class="pagamento-aviso">* Você pode escolher diferente todos os dias! Não fica salvo.</p>
+            
+            <div class="campo-grupo">
+                <label>Como deseja pagar hoje?</label>
+                <select id="formaPagamento" class="input-text">
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Cartão Crédito">Cartão de Crédito</option>
+                    <option value="Cartão Débito">Cartão de Débito</option>
+                </select>
             </div>
-        </div>
 
-        <div class="categoria-bloco" data-categoria="picados">
-            <h2 class="categoria-titulo">Picados na Caixa</h2>
-            <div class="grid-produtos">
-                
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_69308a.png" alt="Picado Tradicional Médio" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Picado Tradicional Médio</h3>
-                            <p class="desc-produto">Muita fartura! Caixa recheada com montanha de batata frita com cheddar, calabresa acebolada, coração de galinha e cubos de carne grelhados.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 90,00</span>
-                            <button onclick="enviarPedido('1x Picado Tradicional Médio (R$ 90,00)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-produto">
-                    <div class="img-container">
-                        <img src="image_69308a.png" alt="Picado Tradicional Pequeno" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=400';">
-                    </div>
-                    <div class="info-produto">
-                        <div>
-                            <h3 class="nome-produto">Picado Tradicional Pequeno</h3>
-                            <p class="desc-produto">A mesma combinação perfeita de carnes picadas e batatas com muito queijo, ideal para comer em dupla.</p>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 80,00</span>
-                            <button onclick="enviarPedido('1x Picado Tradicional Pequeno (R$ 80,00)')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="campo-grupo" style="margin-top:15px;">
+                <label>Se for Dinheiro, precisa de troco para quanto? (Ex: R$ 50,00)</label>
+                <input type="text" id="valorTroco" class="input-text" placeholder="Deixe em branco se não precisar">
             </div>
-        </div>
 
-        <div class="categoria-bloco" data-categoria="porcoes">
-            <h2 class="categoria-titulo">Porções e Acompanhamentos</h2>
-            <div class="lista-itens-sem-foto">
-                
-                <div class="item-sem-foto">
-                    <div class="item-sem-foto-info">
-                        <h3 class="item-sem-foto-nome">Fritas Média com Cheddar e Bacon</h3>
-                        <p class="item-sem-foto-desc">Porção generosa de batata frita crocante e sequinha, coberta com uma camada de cheddar cremoso e muito bacon em cubos.</p>
-                    </div>
-                    <div class="item-sem-foto-preco-acao">
-                        <span class="preco" style="font-size: 18px;">R$ 40,00</span>
-                        <button onclick="enviarPedido('1x Fritas Média com Cheddar e Bacon (R$ 40,00)')" class="btn-pedir" style="padding: 6px 12px; font-size: 12px;">
-                            <i class="fa-brands fa-whatsapp"></i> Pedir
-                        </button>
-                    </div>
-                </div>
-
-                <div class="item-sem-foto">
-                    <div class="item-sem-foto-info">
-                        <h3 class="item-sem-foto-nome">Fritas Pequena com Coração</h3>
-                        <p class="item-sem-foto-desc">Batatinhas fritas palito acompanhadas de corações de galinha grelhados e bem temperados.</p>
-                    </div>
-                    <div class="item-sem-foto-preco-acao">
-                        <span class="preco" style="font-size: 18px;">R$ 35,00</span>
-                        <button onclick="enviarPedido('1x Fritas Pequena com Coração (R$ 35,00)')" class="btn-pedir" style="padding: 6px 12px; font-size: 12px;">
-                            <i class="fa-brands fa-whatsapp"></i> Pedir
-                        </button>
-                    </div>
-                </div>
-
+            <div class="campo-grupo" style="margin-top:15px;">
+                <label>Observações adicionais (opcional)</label>
+                <textarea id="obs" class="input-text" rows="3" placeholder="Ex: Sem cebola, maionese à parte..."></textarea>
             </div>
-        </div>
+        </section>
 
-        <div class="categoria-bloco" data-categoria="bebidas">
-            <h2 class="categoria-titulo">Bebidas Geladas</h2>
-            <div class="grid-produtos">
-                
-                <div class="card-produto">
-                    <div class="info-produto" style="padding-top: 25px;">
-                        <div>
-                            <h3 class="nome-produto"><i class="fa-solid fa-bottle-water" style="color: var(--cor-destaque);"></i> Refrigerante 2 Litros</h3>
-                            <p class="desc-produto">Selecione o sabor de sua preferência abaixo antes de enviar o pedido:</p>
-                            
-                            <select id="sabor-refri2l" class="seletor-sabor">
-                                <option value="Coca-Cola Tradicional">Coca-Cola Tradicional</option>
-                                <option value="Coca-Cola Zero">Coca-Cola Zero</option>
-                                <option value="Pepsi">Pepsi</option>
-                                <option value="Guaraná Antarctica">Guaraná Antarctica</option>
-                                <option value="Fanta Laranja">Fanta Laranja</option>
-                            </select>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 14,00</span>
-                            <button onclick="pedirBebida('Refrigerante 2L', 'sabor-refri2l', 'R$ 14,00')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-produto">
-                    <div class="info-produto" style="padding-top: 25px;">
-                        <div>
-                            <h3 class="nome-produto"><i class="fa-solid fa-bottle-water" style="color: var(--cor-destaque);"></i> Refrigerante 600ml</h3>
-                            <p class="desc-produto">Selecione o seu sabor favorito:</p>
-                            
-                            <select id="sabor-refri600" class="seletor-sabor">
-                                <option value="Coca-Cola">Coca-Cola 600ml</option>
-                                <option value="Pepsi">Pepsi 600ml</option>
-                                <option value="Guaraná Antarctica">Guaraná Antarctica 600ml</option>
-                            </select>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 9,00</span>
-                            <button onclick="pedirBebida('Refrigerante 600ml', 'sabor-refri600', 'R$ 9,00')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-produto">
-                    <div class="info-produto" style="padding-top: 25px;">
-                        <div>
-                            <h3 class="nome-produto"><i class="fa-solid fa-prescription-bottle" style="color: var(--cor-destaque);"></i> Refrigerante Lata</h3>
-                            <p class="desc-produto">Selecione a opção da lata:</p>
-                            
-                            <select id="sabor-lata" class="seletor-sabor">
-                                <option value="Coca-Cola Lata">Coca-Cola Lata</option>
-                                <option value="Coca-Cola Zero Lata">Coca-Cola Zero Lata</option>
-                                <option value="Guaraná Lata">Guaraná Antarctica Lata</option>
-                                <option value="Fanta Uva Lata">Fanta Uva Lata</option>
-                            </select>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 6,00</span>
-                            <button onclick="pedirBebida('Refrigerante Lata', 'sabor-lata', 'R$ 6,00')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-produto">
-                    <div class="info-produto" style="padding-top: 25px;">
-                        <div>
-                            <h3 class="nome-produto"><i class="fa-solid fa-faucet-open" style="color: var(--cor-destaque);"></i> Água Mineral 500ml</h3>
-                            <p class="desc-produto">Escolha com ou sem gás:</p>
-                            
-                            <select id="tipo-agua" class="seletor-sabor">
-                                <option value="Sem Gás">Sem Gás</option>
-                                <option value="Com Gás">Com Gás</option>
-                            </select>
-                        </div>
-                        <div class="preco-pedido">
-                            <span class="preco">R$ 4,50</span>
-                            <button onclick="pedirBebida('Água Mineral 500ml', 'tipo-agua', 'R$ 4,50')" class="btn-pedir">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-produto">
-                    <div class="info-produto" style="padding-top: 25px;">
-                        <div>
-                            <h3 class="nome-produto"><i class="fa-solid fa-beer-mug-empty" style="color: var(--cor-ouro);"></i> Cervejas</h3>
-                            <p class="desc-produto">Consulte as marcas estupidamente geladas disponíveis no nosso estoque agora.</p>
-                        </div>
-                        <div class="preco-pedido" style="margin-top: 30px;">
-                            <span class="preco" style="font-size: 15px; color: var(--texto-cinza);">Consulte opções</span>
-                            <button onclick="perguntarCerveja()" class="btn-pedir" style="background-color: var(--cor-ouro); color: black;">
-                                <i class="fa-brands fa-whatsapp"></i> Consultar Marcas
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        <!-- 📍 DADOS DA LOJA -->
+        <section class="secao-dados">
+            <h3 class="dados-titulo">M&R Lanches e Pizzas</h3>
+            <p class="dados-texto"><i class="fa-solid fa-location-dot"></i> Av. Bernardino Silveira Amorim, 2147 - Amorim, Porto Alegre - RS, 91160-001</p>
+            <p class="dados-texto"><i class="fa-solid fa-phone"></i> (51) 99187-2470</p>
+            <p class="dados-texto"><i class="fa-solid fa-clock"></i> Aberto 24h *Horário pode variar em feriados</p>
+        </section>
 
     </main>
 
-    <footer>
-        <div class="footer-info">
-            <div class="footer-logo">M&R <span>Lanches</span></div>
-            <p><i class="fa-solid fa-location-dot"></i> Av. Bernardino Silveira Amorim, 2147 - Porto Alegre - RS</p>
-            <p><i class="fa-brands fa-whatsapp"></i> Telefone/WhatsApp: <strong>(51) 99187-2470</strong></p>
-            <p><i class="fa-solid fa-clock"></i> Horário de Atendimento: <strong>Aberto 24 Horas</strong></p>
-            <p style="font-size: 11px; color: #444; margin-top: 25px;">&copy; 2026 M&R Lanches e Pizzas. Todos os direitos reservados.</p>
-        </div>
+    <!-- 📲 BOTÃO FINALIZAR -->
+    <a href="#" class="btn-whatsapp" id="btnFinalizarPedido">
+        <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido no WhatsApp
+    </a>
 
-        <div class="desenvolvedor-container">
-            <div class="desenvolvedor-label">Desenvolvido por</div>
-            <img src="Design_sem_nome__5_-removebg-preview-removebg-preview.png" alt="Logo do Desenvolvedor" class="logo-desenvolvedor">
-        </div>
-    </footer>
 
+    <!-- ✅ JAVASCRIPT -->
     <script>
-        // Configuração do Telefone M&R Lanches
-        const TELEFONE_WHATSAPP = "5551991872470";
+        // === SALVAR ENDEREÇO AUTOMATICAMENTE ===
+        const enderecoInput = document.getElementById('enderecoEntrega');
+        const pontoInput = document.getElementById('pontoRef');
 
-        // Função de filtros do cabeçalho
-        function filtrar(categoria, botao) {
-            document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('ativo'));
-            botao.classList.add('ativo');
+        if(localStorage.getItem('meuEndereco')) enderecoInput.value = localStorage.getItem('meuEndereco');
+        if(localStorage.getItem('meuPontoRef')) pontoInput.value = localStorage.getItem('meuPontoRef');
 
-            document.querySelectorAll('.categoria-bloco').forEach(bloco => {
-                if (categoria === 'todos' || bloco.getAttribute('data-categoria') === categoria) {
-                    bloco.style.display = 'block';
-                } else {
-                    bloco.style.display = 'none';
+        enderecoInput.addEventListener('input', () => {
+            localStorage.setItem('meuEndereco', enderecoInput.value);
+        });
+        pontoInput.addEventListener('input', () => {
+            localStorage.setItem('meuPontoRef', pontoInput.value);
+        });
+
+        // === CONTROLE DE QUANTIDADES ===
+        document.querySelectorAll('.item-card').forEach(card => {
+            const menos = card.querySelector('.menos');
+            const mais = card.querySelector('.mais');
+            const valor = card.querySelector('.qtd-valor');
+            let qtd = 0;
+
+            mais.onclick = () => { qtd++; valor.innerText = qtd; };
+            menos.onclick = () => { if(qtd > 0) qtd--; valor.innerText = qtd; };
+        });
+
+        // === MONTAR PEDIDO E ENVIAR WHATSAPP ===
+        document.getElementById('btnFinalizarPedido').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let mensagem = `*🍟 NOVO PEDIDO - M&R LANCHES E PIZZAS 🍕*\n\n`;
+            mensagem += `📍 *Endereço:* ${enderecoInput.value || 'Não informado'}\n`;
+            mensagem += `🔖 *Ponto de Referência:* ${pontoInput.value || 'Não informado'}\n\n`;
+            mensagem += `📋 *ITENS DO PEDIDO:*\n`;
+
+            let temItem = false;
+
+            // Pega todos os itens com quantidade > 0
+            document.querySelectorAll('.item-card').forEach(card => {
+                const nome = card.querySelector('.item-nome').innerText;
+                const qtd = parseInt(card.querySelector('.qtd-valor').innerText);
+                if(qtd > 0) {
+                    mensagem += `• ${qtd}x ${nome}\n`;
+                    temItem = true;
                 }
             });
-        }
 
-        // Envio de Pedido padrão com o rastreio do site
-        function enviarPedido(nomeLanche) {
-            const textoMensagem = `*Pedido vindo do Site M&R Lanches!* 🍔⚡\n\nOlá, gostaria de pedir:\n👉 ${nomeLanche}\n\nPor favor, me envie os valores de tele-entrega para o meu endereço!`;
-            const urlAbreWhats = `https://wa.me/${TELEFONE_WHATSAPP}?text=${encodeURIComponent(textoMensagem)}`;
-            window.open(urlAbreWhats, '_blank');
-        }
+            if(!temItem) {
+                alert('Adicione pelo menos um item ao pedido!');
+                return;
+            }
 
-        // Envio de Bebida coletando a escolha dinâmica do dropdown
-        function pedirBebida(tipoBebida, idSelect, precoBebida) {
-            const elementoSelect = document.getElementById(idSelect);
-            const escolhaSabor = elementoSelect.value;
-            
-            const textoMensagem = `*Pedido vindo do Site M&R Lanches!* 🍔⚡\n\nOlá, gostaria de incluir no meu pedido:\n👉 ${tipoBebida} (Sabor/Opção escolhida: *${escolhaSabor}*) - Preço: ${precoBebida}`;
-            const urlAbreWhats = `https://wa.me/${TELEFONE_WHATSAPP}?text=${encodeURIComponent(textoMensagem)}`;
-            window.open(urlAbreWhats, '_blank');
-        }
+            mensagem += `\n💳 *Forma de Pagamento:* ${document.getElementById('formaPagamento').value}\n`;
+            mensagem += `💵 *Troco para:* ${document.getElementById('valorTroco').value || 'Não precisa'}\n`;
+            mensagem += `📝 *Observações:* ${document.getElementById('obs').value || 'Nenhuma'}\n\n`;
+            mensagem += `_Aguardando confirmação, obrigado!_`;
 
-        // Função específica para consultar marcas de cerveja disponíveis
-        function perguntarCerveja() {
-            const textoMensagem = `*Pedido vindo do Site M&R Lanches!* 🍔⚡\n\nOlá! Estou olhando o cardápio de vocês e gostaria de saber quais são as marcas de *Cerveja* que vocês têm disponíveis e geladas no momento?`;
-            const urlAbreWhats = `https://wa.me/${TELEFONE_WHATSAPP}?text=${encodeURIComponent(textoMensagem)}`;
-            window.open(urlAbreWhats, '_blank');
-        }
+            // Envia para o número da loja
+            const numeroLoja = "5551991872470";
+            const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        });
+
     </script>
 
 </body>
