@@ -1,727 +1,673 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M&R Lanches e Pizzas - Cardápio Digital Oficial</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-principal: #0a0a0a;
-            --bg-card: #141414;
-            --cor-destaque: #ff5100;
-            --cor-destaque-glow: #ff7300;
-            --cor-ouro: #ffb703;
-            --texto-claro: #ffffff;
-            --texto-cinza: #a8a8a8;
-            --sucesso: #25d366;
-            --sucesso-hover: #1ebd52;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&R Lanches e Pizzas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --laranja: #ff5100;
+  --laranja2: #ff2a00;
+  --ouro: #ffb703;
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #181818;
+  --card: #141414;
+  --borda: #252525;
+  --cinza: #888;
+  --verde: #25d366;
+  --verde2: #1ebd52;
+  --branco: #ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--branco);line-height:1.5;padding-bottom:90px;}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
+/* ─── HEADER ─── */
+header{
+  background:rgba(10,10,10,.92);
+  padding:13px 20px;
+  position:sticky;top:0;z-index:300;
+  border-bottom:2px solid var(--laranja);
+  backdrop-filter:blur(14px);
+}
+.hd{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;line-height:1;}
+.logo em{color:var(--laranja);font-style:normal;}
+.aberto{
+  background:var(--verde);color:#000;
+  padding:5px 14px;border-radius:30px;
+  font-weight:800;font-size:12px;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:0 0 14px rgba(37,211,102,.4);
+  animation:pisca 2.2s infinite;
+}
+.aberto::before{content:'';width:7px;height:7px;background:#000;border-radius:50%;}
+@keyframes pisca{0%,100%{opacity:1}50%{opacity:.6}}
 
-        body {
-            background-color: var(--bg-principal);
-            color: var(--texto-claro);
-            line-height: 1.5;
-        }
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  height:460px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600') no-repeat center/cover;
+  transform:scale(1.04);
+  filter:brightness(.45);
+  transition:transform 8s ease;
+}
+.hero:hover .hero-bg{transform:scale(1);}
+.hero-fade{position:absolute;bottom:0;left:0;width:100%;height:160px;background:linear-gradient(transparent,var(--bg));pointer-events:none;}
+.hero-fade-top{position:absolute;top:0;left:0;width:100%;height:60px;background:linear-gradient(var(--bg),transparent);pointer-events:none;}
+.hero-c{position:relative;z-index:2;max-width:700px;padding:0 20px;}
+.hero-sup{
+  font-family:'Pacifico',cursive;
+  color:var(--ouro);font-size:30px;
+  transform:rotate(-2.5deg);display:inline-block;
+  text-shadow:2px 2px 8px rgba(0,0,0,.9);
+  margin-bottom:4px;
+}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(60px,12vw,90px);
+  line-height:.88;letter-spacing:2px;
+  text-shadow:0 4px 20px rgba(255,81,0,.7),0 2px 0 rgba(0,0,0,.9);
+  margin-bottom:14px;
+}
+.hero p{font-size:16px;color:#ddd;margin-bottom:26px;text-shadow:0 1px 4px rgba(0,0,0,.9);}
+.hero-btn{
+  background:linear-gradient(135deg,var(--laranja),var(--laranja2));
+  color:#fff;text-decoration:none;
+  padding:13px 32px;font-size:14px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.5px;
+  border-radius:50px;
+  box-shadow:0 4px 22px rgba(255,81,0,.45);
+  transition:.25s;display:inline-block;
+}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,81,0,.6);}
 
-        /* BARRA DE NAVEGAÇÃO */
-        header {
-            background: rgba(10, 10, 10, 0.85);
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid var(--cor-destaque);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+/* ─── WRAPPER CONTEÚDO ─── */
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px;}
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ─── ENDEREÇO ─── */
+.bloco-end{
+  background:var(--bg2);
+  border:2px solid var(--laranja);
+  border-radius:16px;
+  padding:22px 24px;
+  margin:32px auto;
+  max-width:860px;
+  box-shadow:0 8px 30px rgba(0,0,0,.6);
+}
+.bloco-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.end-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;}
+@media(max-width:560px){.end-grid{grid-template-columns:1fr;}}
+.campo label{display:block;font-size:11px;font-weight:700;color:#aaa;margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase;}
+.inp{
+  width:100%;background:#1c1c1c;border:1px solid #2e2e2e;
+  color:#fff;padding:11px 14px;border-radius:9px;font-size:13px;
+  transition:.25s;
+}
+.inp:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(255,81,0,.1);}
 
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 36px;
-            letter-spacing: 1px;
-            color: var(--texto-claro);
-            text-shadow: 0 0 10px rgba(255, 81, 0, 0.3);
-        }
+/* ─── CATEGORIAS NAV ─── */
+.cat-nav{
+  display:flex;gap:8px;overflow-x:auto;
+  padding:6px 0 14px;scrollbar-width:none;
+  position:sticky;top:54px;z-index:200;
+  background:var(--bg);
+  padding-top:10px;
+  border-bottom:1px solid var(--borda);
+  margin-bottom:6px;
+}
+.cat-nav::-webkit-scrollbar{display:none;}
+.cat-pill{
+  flex-shrink:0;background:var(--bg3);border:1px solid var(--borda);
+  color:#aaa;padding:7px 16px;border-radius:30px;font-size:12px;
+  font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap;
+  text-decoration:none;display:inline-block;
+}
+.cat-pill:hover,.cat-pill.ativo{background:var(--laranja);border-color:var(--laranja);color:#fff;}
 
-        .logo span {
-            color: var(--cor-destaque);
-        }
+/* ─── TÍTULO CATEGORIA ─── */
+.sec-titulo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:38px;color:var(--laranja);
+  display:flex;align-items:center;gap:10px;
+  margin:44px 0 20px;
+  scroll-margin-top:110px;
+}
 
-        .status-badge {
-            background-color: var(--sucesso);
-            color: #000;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
-            animation: pulse 2s infinite;
-        }
+/* ─── GRID ITENS ─── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
 
-        .status-badge::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #000;
-            border-radius: 50%;
-        }
+/* ─── CARD ─── */
+.card{
+  background:var(--card);border:1px solid var(--borda);
+  border-radius:13px;transition:.25s;
+  display:flex;flex-direction:column;
+}
+.card:hover{border-color:var(--laranja);transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,81,0,.13);}
+.card-body{padding:16px 17px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.card-nome{font-weight:700;font-size:15px;color:#fff;}
+.card-preco{font-weight:800;font-size:14px;color:var(--ouro);}
+.card-desc{font-size:12px;color:var(--cinza);line-height:1.5;}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+/* select sabor */
+.sel-wrap{margin-top:2px;}
+.sel-wrap label{display:block;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.sel-wrap select{
+  width:100%;background:#1c1c1c;border:1px solid #2e2e2e;
+  color:#ccc;padding:8px 10px;border-radius:8px;font-size:12px;
+  cursor:pointer;
+}
+.sel-wrap select:focus{outline:none;border-color:var(--laranja);}
 
-        /* HERO SECTION (BANNER PRINCIPAL) */
-        .hero {
-            position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), #0a0a0a), 
-                        url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600') no-repeat center center/cover;
-            height: 420px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            border-bottom: 1px solid #1a1a1a;
-        }
+/* controle qtd */
+.qtd-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#1c1c1c;border-radius:9px;padding:8px 12px;
+  margin-top:auto;padding-top:10px;
+}
+.qtd-row span{font-size:12px;color:#aaa;}
+.qtd-acoes{display:flex;align-items:center;gap:10px;}
+.qtd-btn{
+  background:var(--laranja);border:none;color:#fff;
+  width:30px;height:30px;border-radius:7px;
+  font-size:18px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;line-height:1;
+}
+.qtd-btn:hover{background:var(--laranja2);}
+.qtd-btn:active{transform:scale(.93);}
+.qtd-num{font-weight:800;font-size:16px;min-width:22px;text-align:center;}
+.card.tem-item{border-color:var(--ouro) !important;box-shadow:0 0 0 1px var(--ouro);}
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(transparent, var(--bg-principal));
-            pointer-events: none;
-        }
+/* ─── PAGAMENTO ─── */
+.bloco-pag{
+  background:var(--bg2);border:1px solid var(--borda);
+  border-radius:16px;padding:22px 24px;
+  margin:40px auto;max-width:860px;
+}
+.pag-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.pag-sub{font-size:11px;color:var(--cinza);margin-bottom:18px;}
 
-        .hero-content {
-            z-index: 2;
-            max-width: 800px;
-        }
+/* opções pagamento */
+.pag-opcoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+.pag-opt{
+  flex:1 1 130px;
+  background:#1c1c1c;border:2px solid #2e2e2e;
+  border-radius:10px;padding:11px 14px;
+  cursor:pointer;transition:.2s;
+  display:flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:600;
+  user-select:none;
+}
+.pag-opt:hover{border-color:#444;}
+.pag-opt.sel{border-color:var(--laranja);background:rgba(255,81,0,.08);color:#fff;}
+.pag-opt i{font-size:16px;color:var(--laranja);}
 
-        .hero-title-top {
-            font-family: 'Pacifico', cursive;
-            color: var(--cor-ouro);
-            font-size: 34px;
-            margin-bottom: -5px;
-            transform: rotate(-3deg);
-            display: inline-block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
+/* toggle maquininha */
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#1c1c1c;border-radius:10px;padding:13px 15px;
+  margin-bottom:16px;cursor:pointer;
+}
+.toggle-info strong{font-size:13px;display:block;}
+.toggle-info small{font-size:11px;color:var(--cinza);}
+.toggler{position:relative;width:46px;height:25px;flex-shrink:0;}
+.toggler input{opacity:0;width:0;height:0;position:absolute;}
+.tog-slider{position:absolute;inset:0;background:#333;border-radius:25px;transition:.3s;cursor:pointer;}
+.tog-slider::before{content:'';position:absolute;width:19px;height:19px;background:#fff;border-radius:50%;left:3px;top:3px;transition:.3s;}
+.toggler input:checked + .tog-slider{background:var(--laranja);}
+.toggler input:checked + .tog-slider::before{transform:translateX(21px);}
 
-        .hero h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 76px;
-            line-height: 0.9;
-            color: var(--texto-claro);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            text-shadow: 0px 4px 15px rgba(255, 81, 0, 0.6);
-        }
+/* troco e obs */
+.campo-mt{margin-top:14px;}
 
-        .hero p {
-            font-size: 18px;
-            color: #e0e0e0;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-        }
+/* ─── LOJA INFO ─── */
+.bloco-loja{
+  background:var(--bg2);border:1px solid var(--borda);
+  border-radius:16px;padding:22px;
+  margin:0 auto 20px;max-width:860px;
+  text-align:center;
+}
+.loja-nome{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--ouro);margin-bottom:10px;}
+.loja-item{font-size:13px;color:var(--cinza);margin:5px 0;display:flex;align-items:center;justify-content:center;gap:7px;}
+.loja-item i{color:var(--laranja);width:14px;text-align:center;}
 
-        .hero-btn {
-            background: linear-gradient(135deg, var(--cor-destaque) 0%, #ff2a00 100%);
-            color: var(--texto-claro);
-            text-decoration: none;
-            padding: 14px 32px;
-            font-size: 15px;
-            font-weight: 800;
-            text-transform: uppercase;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(255, 81, 0, 0.4);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
+/* ─── BARRA FLUTUANTE ─── */
+.barra{
+  position:fixed;bottom:0;left:0;width:100%;z-index:400;
+  background:#0f0f0f;border-top:2px solid var(--laranja);
+  padding:10px 20px;
+  box-shadow:0 -6px 24px rgba(0,0,0,.7);
+  transform:translateY(0);transition:.3s;
+}
+.barra-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.barra-esq{display:flex;flex-direction:column;}
+.barra-label{font-size:10px;font-weight:700;color:var(--cinza);letter-spacing:.8px;text-transform:uppercase;}
+.barra-total{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--ouro);line-height:1;}
+.barra-qtd{font-size:11px;color:var(--cinza);margin-top:1px;}
+.btn-wpp{
+  background:var(--verde);color:#000;
+  font-weight:800;font-size:14px;
+  padding:12px 22px;border-radius:50px;
+  border:none;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  transition:.25s;white-space:nowrap;
+  opacity:.4;pointer-events:none;
+}
+.btn-wpp.ativo{opacity:1;pointer-events:auto;}
+.btn-wpp.ativo:hover{background:var(--verde2);transform:scale(1.04);}
+.btn-wpp i{font-size:18px;}
 
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 81, 0, 0.6);
-        }
-
-        /* ✅ MENSAGENS ESPECIAIS */
-        .aviso-logistica {
-            background: linear-gradient(90deg, #222 0%, #1a1a1a 100%);
-            border-left: 4px solid var(--cor-ouro);
-            padding: 12px 20px;
-            margin: 20px auto;
-            max-width: 1000px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--cor-ouro);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .aviso-logistica i { font-size: 18px; }
-
-        /* SEÇÃO DE LOGÍSTICA (ENDEREÇO SALVO AUTOMATICAMENTE) */
-        .secao-logistica {
-            max-width: 800px;
-            margin: -30px auto 30px auto;
-            background: #111111;
-            border: 2px solid var(--cor-destaque);
-            border-radius: 16px;
-            padding: 22px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-        }
-
-        .logistica-titulo {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--cor-ouro);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logistica-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .logistica-grid { grid-template-columns: 1fr; }
-        }
-
-        .campo-grupo {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .campo-grupo label {
-            font-size: 12px;
-            font-weight: 600;
-            color: #d0d0d0;
-        }
-
-        .input-text {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            color: #fff;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border 0.3s;
-        }
-        .input-text:focus {
-            outline: none;
-            border-color: var(--cor-destaque);
-            box-shadow: 0 0 0 2px rgba(255, 81, 0, 0.1);
-        }
-
-        /* CARDÁPIO */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .categoria-titulo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 42px;
-            color: var(--cor-destaque);
-            margin: 50px 0 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .itens-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .item-card {
-            background-color: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #222;
-            transition: all 0.3s ease;
-        }
-        .item-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--cor-destaque);
-            box-shadow: 0 8px 20px rgba(255, 81, 0, 0.15);
-        }
-
-        .item-imagem {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .item-valor {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0,0,0,0.8);
-            color: var(--cor-ouro);
-            font-weight: 800;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 15px;
-        }
-
-        .item-corpo {
-            padding: 18px;
-        }
-
-        .item-nome {
-            font-weight: 700;
-            font-size: 17px;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .item-desc {
-            font-size: 13px;
-            color: var(--texto-cinza);
-            margin-bottom: 14px;
-        }
-
-        /* ✅ CONTROLE DE QUANTIDADE */
-        .quantidade-controle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #1a1a1a;
-            border-radius: 8px;
-            padding: 6px 10px;
-        }
-        .qtd-btn {
-            background: var(--cor-destaque);
-            border: none;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .qtd-btn:hover { background: #ff2a00; }
-        .qtd-valor {
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        /* ✅ FORMA DE PAGAMENTO (NÃO SALVA) */
-        .secao-pagamento {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #111;
-            border-radius: 12px;
-            border: 1px solid #333;
-        }
-        .pagamento-titulo {
-            color: var(--cor-ouro);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .pagamento-aviso {
-            font-size: 12px;
-            color: var(--texto-cinza);
-            margin-bottom: 15px;
-        }
-
-        /* DADOS DA LOJA */
-        .secao-dados {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #111;
-            border-radius: 12px;
-            border: 1px solid #333;
-            text-align: center;
-        }
-        .dados-titulo {
-            color: var(--cor-ouro);
-            margin-bottom: 10px;
-        }
-        .dados-texto {
-            font-size: 14px;
-            color: var(--texto-cinza);
-            margin: 4px 0;
-        }
-
-        .btn-whatsapp {
-            display: block;
-            width: fit-content;
-            margin: 40px auto;
-            background-color: var(--sucesso);
-            color: #000;
-            font-weight: 800;
-            padding: 14px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        .btn-whatsapp:hover {
-            background-color: var(--sucesso-hover);
-            transform: scale(1.05);
-        }
-
-    </style>
+@media(max-width:440px){
+  .barra-total{font-size:24px;}
+  .btn-wpp{font-size:12px;padding:10px 16px;}
+  .hero h1{font-size:58px;}
+}
+</style>
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGAÇÃO -->
-    <header>
-        <div class="header-container">
-            <div class="logo">M&R <span>Lanches</span></div>
-            <div class="status-badge">
-                <i class="fa-solid fa-circle-check"></i> ABERTO 24H
-            </div>
-        </div>
-    </header>
+<!-- HEADER -->
+<header>
+  <div class="hd">
+    <div class="logo">M<em>&</em>R Lanches</div>
+    <div class="aberto"><i class="fa-solid fa-circle-check"></i> ABERTO 18H–00H</div>
+  </div>
+</header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-title-top">O Melhor Sabor</div>
-            <h1>Lanches & Pizzas</h1>
-            <p>Entrega rápida e sabor incomparável na sua porta</p>
-            <a href="#cardapio" class="hero-btn">Ver Cardápio</a>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-fade-top"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-c">
+    <div class="hero-sup">O Melhor Sabor</div>
+    <h1>Lanches &amp; Pizzas</h1>
+    <p>Entrega rápida e sabor incomparável na sua porta</p>
+    <a href="#cardapio" class="hero-btn"><i class="fa-solid fa-utensils" style="margin-right:7px;"></i>Ver Cardápio</a>
+  </div>
+</section>
 
-    <!-- ✅ MENSAGENS ESTRATÉGICAS -->
-    <div class="aviso-logistica">
-        <i class="fa-solid fa-money-bill-wave"></i>
-        <strong>💡 Vai precisar de troco? Informe o valor da nota no final do pedido, por favor!</strong>
+<div class="wrap">
+
+  <!-- NAV CATEGORIAS -->
+  <nav class="cat-nav" id="catNav">
+    <a class="cat-pill ativo" href="#sec-picados">🍟 Picados</a>
+    <a class="cat-pill" href="#sec-xis">🍔 Xis</a>
+    <a class="cat-pill" href="#sec-torradas">🍞 Torradas</a>
+    <a class="cat-pill" href="#sec-hamburguer">🍔 Hambúrguer</a>
+    <a class="cat-pill" href="#sec-cq">🌭 Cachorro Quente</a>
+    <a class="cat-pill" href="#sec-pizzas">🍕 Pizzas</a>
+    <a class="cat-pill" href="#sec-bebidas">🥤 Bebidas</a>
+  </nav>
+
+  <!-- ════ CARDÁPIO ════ -->
+  <main id="cardapio">
+
+    <!-- PICADOS & PORÇÕES -->
+    <h2 class="sec-titulo" id="sec-picados"><i class="fa-solid fa-pot-food"></i> Picados &amp; Porções</h2>
+    <div class="grid">
+      <div class="card" data-preco="90.00"><div class="card-body"><p class="card-nome">Picado Médio Tradicional</p><p class="card-preco">R$ 90,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="80.00"><div class="card-body"><p class="card-nome">Picado Pequeno Tradicional</p><p class="card-preco">R$ 80,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="25.00"><div class="card-body"><p class="card-nome">Porção Pequena Fritas</p><p class="card-preco">R$ 25,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="30.00"><div class="card-body"><p class="card-nome">Porção Média Fritas</p><p class="card-preco">R$ 30,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="30.00"><div class="card-body"><p class="card-nome">Porção Pequena Bacon Cheddar</p><p class="card-preco">R$ 30,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="40.00"><div class="card-body"><p class="card-nome">Porção Média Bacon Cheddar</p><p class="card-preco">R$ 40,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="35.00"><div class="card-body"><p class="card-nome">Porção Pequena Coração</p><p class="card-preco">R$ 35,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="45.00"><div class="card-body"><p class="card-nome">Porção Média Coração</p><p class="card-preco">R$ 45,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <div class="aviso-logistica">
-        <i class="fa-solid fa-credit-card"></i>
-        <strong>💳 Precisa levar maquininha? É só avisar que levamos até você ;)</strong>
+    <!-- XIS -->
+    <h2 class="sec-titulo" id="sec-xis"><i class="fa-solid fa-burger"></i> Xis</h2>
+    <div class="grid">
+      <div class="card" data-preco="19.90"><div class="card-body"><p class="card-nome">Xis Carne</p><p class="card-preco">R$ 19,90</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Frango</p><p class="card-preco">R$ 22,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Xis Frango c/ Catupiry</p><p class="card-preco">R$ 24,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="27.00"><div class="card-body"><p class="card-nome">Xis Strogonoff</p><p class="card-preco">R$ 27,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Calabresa</p><p class="card-preco">R$ 22,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Xis Bacon</p><p class="card-preco">R$ 24,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="28.00"><div class="card-body"><p class="card-nome">Xis Coração</p><p class="card-preco">R$ 28,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="29.00"><div class="card-body"><p class="card-nome">Xis Filé</p><p class="card-preco">R$ 29,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Acebolado</p><p class="card-preco">R$ 22,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ✅ ENDEREÇO SALVO AUTOMATICAMENTE -->
-    <section class="secao-logistica">
-        <h3 class="logistica-titulo">
-            <i class="fa-solid fa-location-dot"></i> Endereço de Entrega
-        </h3>
-        <div class="logistica-grid">
-            <div class="campo-grupo">
-                <label>Endereço completo (salvo automaticamente)</label>
-                <input type="text" id="enderecoEntrega" class="input-text" placeholder="Rua, Número, Bairro, Complemento">
-            </div>
-            <div class="campo-grupo">
-                <label>Ponto de Referência</label>
-                <input type="text" id="pontoRef" class="input-text" placeholder="Perto de onde?">
-            </div>
+    <!-- TORRADAS -->
+    <h2 class="sec-titulo" id="sec-torradas"><i class="fa-solid fa-bread-slice"></i> Torradas</h2>
+    <div class="grid">
+      <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Torrada Simples</p><p class="card-preco">R$ 10,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Torrada com Carne</p><p class="card-preco">R$ 15,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- HAMBÚRGUER -->
+    <h2 class="sec-titulo" id="sec-hamburguer"><i class="fa-solid fa-burger"></i> Hambúrguer</h2>
+    <div class="grid">
+      <div class="card" data-preco="19.90"><div class="card-body"><p class="card-nome">Hambúrguer Simples</p><p class="card-preco">R$ 19,90</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Hambúrguer Duplo</p><p class="card-preco">R$ 24,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- CACHORRO QUENTE -->
+    <h2 class="sec-titulo" id="sec-cq"><i class="fa-solid fa-hotdog"></i> Cachorro Quente</h2>
+    <div class="grid">
+      <div class="card" data-preco="13.00"><div class="card-body"><p class="card-nome">Cachorro Quente Simples</p><p class="card-preco">R$ 13,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Cachorro Quente Duplo</p><p class="card-preco">R$ 15,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="16.00"><div class="card-body"><p class="card-nome">Cachorro Quente Calabresa</p><p class="card-preco">R$ 16,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="17.00"><div class="card-body"><p class="card-nome">Cachorro Quente Linguiça</p><p class="card-preco">R$ 17,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="18.00"><div class="card-body"><p class="card-nome">Cachorro Quente Frango</p><p class="card-preco">R$ 18,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="19.00"><div class="card-body"><p class="card-nome">Cachorro Quente Coração</p><p class="card-preco">R$ 19,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- PIZZAS -->
+    <h2 class="sec-titulo" id="sec-pizzas"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
+    <div class="grid">
+
+      <div class="card" data-preco="90.00">
+        <div class="card-body">
+          <p class="card-nome">Pizza Família</p>
+          <p class="card-preco">R$ 90,00</p>
+          <div class="sel-wrap">
+            <label>Sabor</label>
+            <select class="sabor-sel">
+              <option value="">Selecione o sabor…</option>
+              <optgroup label="— Salgados —">
+                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
+                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
+                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
+                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
+                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
+              </optgroup>
+              <optgroup label="— Doces —">
+                <option>Chocolate Preto</option><option>Chocolate Branco</option>
+                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
-    </section>
+      </div>
 
-    <!-- CARDÁPIO -->
-    <main id="cardapio" class="container">
-
-        <!-- 🥓 PICADOS E PORÇÕES DE FRITAS -->
-        <h2 class="categoria-titulo"><i class="fa-solid fa-pot-food"></i> Picados e Porções</h2>
-        <div class="itens-grid">
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Picado Médio Tradicional</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 90,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Picado Pequeno Tradicional</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 80,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Porção Pequena Fritas</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 25,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Porção Média Fritas</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 30,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Porção Média Bacon Cheddar</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 40,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Porção Pequena Bacon Cheddar</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 30,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Porção Média Coração</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 45,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Porção Pequena Coração</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 35,00</div>
-                    <div class="quantidade-controle" style="margin-top: 10px;">
-                        <span>Quantidade:</span>
-                        <div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div>
-                    </div>
-                </div>
-            </div>
+      <div class="card" data-preco="110.00">
+        <div class="card-body">
+          <p class="card-nome">Pizza Família Combo</p>
+          <p class="card-preco">R$ 110,00</p>
+          <p class="card-desc">Acompanha bebida inclusa.</p>
+          <div class="sel-wrap">
+            <label>Sabor</label>
+            <select class="sabor-sel">
+              <option value="">Selecione o sabor…</option>
+              <optgroup label="— Salgados —">
+                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
+                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
+                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
+                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
+                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
+              </optgroup>
+              <optgroup label="— Doces —">
+                <option>Chocolate Preto</option><option>Chocolate Branco</option>
+                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
+      </div>
 
-        <!-- 🍔 XIS, HAMBÚRGUER E TORRADAS -->
-        <h2 class="categoria-titulo"><i class="fa-solid fa-burger"></i> Lanches, Torradas e Hambúrgueres</h2>
-        <div class="itens-grid">
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Carne</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 19,90</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Frango</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 22,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Frango c/ Catupiry</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 24,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Strogonoff</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 27,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Calabresa</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 22,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Bacon</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 24,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Coração</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 28,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Filé</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 29,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Xis Acebolado</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 22,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Torrada Simples</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 10,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Torrada com Carne</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 15,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Hambúrguer Simples</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 19,90</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Hambúrguer Duplo</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 24,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="65.00">
+        <div class="card-body">
+          <p class="card-nome">Pizza Média</p>
+          <p class="card-preco">R$ 65,00</p>
+          <div class="sel-wrap">
+            <label>Sabor</label>
+            <select class="sabor-sel">
+              <option value="">Selecione o sabor…</option>
+              <optgroup label="— Salgados —">
+                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
+                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
+                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
+                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
+                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
+              </optgroup>
+              <optgroup label="— Doces —">
+                <option>Chocolate Preto</option><option>Chocolate Branco</option>
+                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
+      </div>
 
-        <!-- 🌭 CACHORRO QUENTE -->
-        <h2 class="categoria-titulo"><i class="fa-solid fa-hotdog"></i> Cachorro Quente</h2>
-        <div class="itens-grid">
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Simples</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 13,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Duplo</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 15,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Calabresa</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 16,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Linguiça</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 17,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Coração</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 19,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-            <div class="item-card"><div class="item-corpo"><h3 class="item-nome">Frango</h3><div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 18,00</div><div class="quantidade-controle" style="margin-top: 10px;"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="90.00">
+        <div class="card-body">
+          <p class="card-nome">Pizza Média Combo</p>
+          <p class="card-preco">R$ 90,00</p>
+          <p class="card-desc">Acompanha bebida inclusa.</p>
+          <div class="sel-wrap">
+            <label>Sabor</label>
+            <select class="sabor-sel">
+              <option value="">Selecione o sabor…</option>
+              <optgroup label="— Salgados —">
+                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
+                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
+                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
+                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
+                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
+              </optgroup>
+              <optgroup label="— Doces —">
+                <option>Chocolate Preto</option><option>Chocolate Branco</option>
+                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
+      </div>
 
-        <!-- 🍕 PIZZAS -->
-        <h2 class="categoria-titulo"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
-        <div class="itens-grid">
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Pizza Família</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 90,00</div>
-                    <p class="item-desc">Sabores: Azeitonas, Alho e Óleo, Calabresa, Coração, Portuguesa, Frango c/ Catupiry, Mussarela, 4 Queijos, Bacon, Milho, Strogonoff, Presunto, Napolitana, Moda da Casa, Brócolis, Siciliana.</p>
-                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Pizza Família Combo</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 110,00</div>
-                    <p class="item-desc">Acompanha bebida. Sabores salgados ou doces: Chocolate Preto, Branco, c/ M&M's, Banana c/ Gemada, Prestígio.</p>
-                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Pizza Média</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 65,00</div>
-                    <p class="item-desc">Todos os sabores disponíveis.</p>
-                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
-                </div>
-            </div>
-            <div class="item-card">
-                <div class="item-corpo">
-                    <h3 class="item-nome">Pizza Média Combo</h3>
-                    <div class="item-valor" style="position: static; background: none; color: var(--cor-ouro); padding: 0;">R$ 90,00</div>
-                    <p class="item-desc">Acompanha bebida.</p>
-                    <div class="quantidade-controle"><span>Quantidade:</span><div><button class="qtd-btn menos">-</button><span class="qtd-valor">0</span><button class="qtd-btn mais">+</button></div></div>
-                </div>
-            </div>
+    </div>
+
+    <!-- BEBIDAS -->
+    <h2 class="sec-titulo" id="sec-bebidas"><i class="fa-solid fa-bottle-water"></i> Bebidas</h2>
+    <div class="grid">
+      <div class="card" data-preco="6.00"><div class="card-body"><p class="card-nome">Coca-Cola Lata 350ml</p><p class="card-preco">R$ 6,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Coca-Cola 600ml</p><p class="card-preco">R$ 10,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="6.00"><div class="card-body"><p class="card-nome">Guaraná Antarctica Lata 350ml</p><p class="card-preco">R$ 6,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Guaraná Antarctica 600ml</p><p class="card-preco">R$ 10,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="4.00"><div class="card-body"><p class="card-nome">Água Mineral 500ml</p><p class="card-preco">R$ 4,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="7.00"><div class="card-body"><p class="card-nome">Suco de Caixinha</p><p class="card-preco">R$ 7,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- ENDEREÇO -->
+    <div class="bloco-end" style="margin:48px 0 0;">
+      <div class="bloco-titulo"><i class="fa-solid fa-location-dot"></i> Endereço de Entrega</div>
+      <div class="end-grid">
+        <div class="campo">
+          <label>Endereço completo</label>
+          <input type="text" id="enderecoEntrega" class="inp" placeholder="Rua, Número, Bairro, Complemento">
         </div>
+        <div class="campo">
+          <label>Ponto de Referência</label>
+          <input type="text" id="pontoRef" class="inp" placeholder="Perto de onde?">
+        </div>
+      </div>
+    </div>
 
-        <!-- ✅ FORMA DE PAGAMENTO -->
-        <section class="secao-pagamento">
-            <h3 class="pagamento-titulo"><i class="fa-solid fa-sack-dollar"></i> Forma de Pagamento</h3>
-            <p class="pagamento-aviso">* Você pode escolher diferente todos os dias! Não fica salvo.</p>
-            
-            <div class="campo-grupo">
-                <label>Como deseja pagar hoje?</label>
-                <select id="formaPagamento" class="input-text">
-                    <option value="Dinheiro">Dinheiro</option>
-                    <option value="Pix">Pix</option>
-                    <option value="Cartão Crédito">Cartão de Crédito</option>
-                    <option value="Cartão Débito">Cartão de Débito</option>
-                </select>
-            </div>
+    <!-- PAGAMENTO -->
+    <div class="bloco-pag" style="margin-top:20px;">
+      <div class="pag-titulo"><i class="fa-solid fa-sack-dollar"></i> Forma de Pagamento</div>
+      <p class="pag-sub">Escolha abaixo como prefere pagar hoje.</p>
 
-            <div class="campo-grupo" style="margin-top:15px;">
-                <label>Se for Dinheiro, precisa de troco para quanto? (Ex: R$ 50,00)</label>
-                <input type="text" id="valorTroco" class="input-text" placeholder="Deixe em branco se não precisar">
-            </div>
+      <div class="pag-opcoes">
+        <div class="pag-opt sel" data-pag="Dinheiro"><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</div>
+        <div class="pag-opt" data-pag="Pix"><i class="fa-brands fa-pix"></i> Pix</div>
+        <div class="pag-opt" data-pag="Cartão de Crédito"><i class="fa-solid fa-credit-card"></i> Crédito</div>
+        <div class="pag-opt" data-pag="Cartão de Débito"><i class="fa-solid fa-credit-card"></i> Débito</div>
+      </div>
 
-            <div class="campo-grupo" style="margin-top:15px;">
-                <label>Observações adicionais (opcional)</label>
-                <textarea id="obs" class="input-text" rows="3" placeholder="Ex: Sem cebola, maionese à parte..."></textarea>
-            </div>
-        </section>
+      <div class="toggle-row" onclick="document.getElementById('maqChk').click()">
+        <div class="toggle-info">
+          <strong>🖨️ Precisa de maquininha?</strong>
+          <small>Levamos até você sem custo extra</small>
+        </div>
+        <label class="toggler" onclick="event.stopPropagation()">
+          <input type="checkbox" id="maqChk">
+          <span class="tog-slider"></span>
+        </label>
+      </div>
 
-        <!-- 📍 DADOS DA LOJA -->
-        <section class="secao-dados">
-            <h3 class="dados-titulo">M&R Lanches e Pizzas</h3>
-            <p class="dados-texto"><i class="fa-solid fa-location-dot"></i> Av. Bernardino Silveira Amorim, 2147 - Amorim, Porto Alegre - RS, 91160-001</p>
-            <p class="dados-texto"><i class="fa-solid fa-phone"></i> (51) 99187-2470</p>
-            <p class="dados-texto"><i class="fa-solid fa-clock"></i> Aberto 24h *Horário pode variar em feriados</p>
-        </section>
+      <div class="campo campo-mt" id="trocoWrap">
+        <label>Troco para quanto? <span style="font-weight:400;color:#555;">(só se for dinheiro)</span></label>
+        <input type="text" id="valorTroco" class="inp" placeholder="Ex: R$ 50,00 — deixe em branco se não precisar">
+      </div>
 
-    </main>
+      <div class="campo campo-mt">
+        <label>Observações</label>
+        <textarea id="obs" class="inp" rows="3" placeholder="Ex: Sem cebola, pizza bem assada…"></textarea>
+      </div>
+    </div>
 
-    <!-- 📲 BOTÃO FINALIZAR -->
-    <a href="#" class="btn-whatsapp" id="btnFinalizarPedido">
-        <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido no WhatsApp
-    </a>
+    <!-- DADOS LOJA -->
+    <div class="bloco-loja">
+      <p class="loja-nome">M&amp;R Lanches e Pizzas</p>
+      <p class="loja-item"><i class="fa-solid fa-location-dot"></i> Av. Bernardino Silveira Amorim, 2147 — Porto Alegre, RS</p>
+      <p class="loja-item"><i class="fa-solid fa-phone"></i> (51) 99187-2470</p>
+      <p class="loja-item"><i class="fa-solid fa-clock"></i> Todos os dias · 18h às 00h</p>
+    </div>
 
+  </main>
+</div><!-- /wrap -->
 
-    <!-- ✅ JAVASCRIPT -->
-    <script>
-        // === SALVAR ENDEREÇO AUTOMATICAMENTE ===
-        const enderecoInput = document.getElementById('enderecoEntrega');
-        const pontoInput = document.getElementById('pontoRef');
+<!-- BARRA FLUTUANTE -->
+<div class="barra">
+  <div class="barra-inner">
+    <div class="barra-esq">
+      <span class="barra-label">Total do Pedido</span>
+      <span class="barra-total" id="barraTotal">R$ 0,00</span>
+      <span class="barra-qtd" id="barraQtd">Adicione itens para começar</span>
+    </div>
+    <button class="btn-wpp" id="btnFinalizar">
+      <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido
+    </button>
+  </div>
+</div>
 
-        if(localStorage.getItem('meuEndereco')) enderecoInput.value = localStorage.getItem('meuEndereco');
-        if(localStorage.getItem('meuPontoRef')) pontoInput.value = localStorage.getItem('meuPontoRef');
+<script>
+// ── ENDEREÇO SALVO ──
+const endEl = document.getElementById('enderecoEntrega');
+const refEl = document.getElementById('pontoRef');
+if(localStorage.getItem('mrEnd')) endEl.value = localStorage.getItem('mrEnd');
+if(localStorage.getItem('mrRef')) refEl.value = localStorage.getItem('mrRef');
+endEl.addEventListener('input', () => localStorage.setItem('mrEnd', endEl.value));
+refEl.addEventListener('input', () => localStorage.setItem('mrRef', refEl.value));
 
-        enderecoInput.addEventListener('input', () => {
-            localStorage.setItem('meuEndereco', enderecoInput.value);
-        });
-        pontoInput.addEventListener('input', () => {
-            localStorage.setItem('meuPontoRef', pontoInput.value);
-        });
+// ── FORMA DE PAGAMENTO ──
+let pagSel = 'Dinheiro';
+document.querySelectorAll('.pag-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.pag-opt').forEach(o => o.classList.remove('sel'));
+    opt.classList.add('sel');
+    pagSel = opt.dataset.pag;
+  });
+});
 
-        // === CONTROLE DE QUANTIDADES ===
-        document.querySelectorAll('.item-card').forEach(card => {
-            const menos = card.querySelector('.menos');
-            const mais = card.querySelector('.mais');
-            const valor = card.querySelector('.qtd-valor');
-            let qtd = 0;
+// ── RECALCULAR TOTAL ──
+function recalc() {
+  let total = 0, qtdTotal = 0;
+  document.querySelectorAll('.card[data-preco]').forEach(card => {
+    const qtd = parseInt(card.querySelector('.qtd-num').innerText);
+    const preco = parseFloat(card.dataset.preco);
+    total += qtd * preco;
+    qtdTotal += qtd;
+    // destaca card com item
+    card.classList.toggle('tem-item', qtd > 0);
+  });
 
-            mais.onclick = () => { qtd++; valor.innerText = qtd; };
-            menos.onclick = () => { if(qtd > 0) qtd--; valor.innerText = qtd; };
-        });
+  document.getElementById('barraTotal').innerText = 'R$ ' + total.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const btn = document.getElementById('btnFinalizar');
+  if(qtdTotal === 0){
+    document.getElementById('barraQtd').innerText = 'Adicione itens para começar';
+    btn.classList.remove('ativo');
+  } else {
+    document.getElementById('barraQtd').innerText = qtdTotal === 1 ? '1 item no pedido' : qtdTotal + ' itens no pedido';
+    btn.classList.add('ativo');
+  }
+}
 
-        // === MONTAR PEDIDO E ENVIAR WHATSAPP ===
-        document.getElementById('btnFinalizarPedido').addEventListener('click', function(e) {
-            e.preventDefault();
+// ── BOTÕES +/− ──
+document.querySelectorAll('.card[data-preco]').forEach(card => {
+  const numEl = card.querySelector('.qtd-num');
+  card.querySelector('.mais').addEventListener('click', () => {
+    numEl.innerText = parseInt(numEl.innerText) + 1;
+    recalc();
+  });
+  card.querySelector('.menos').addEventListener('click', () => {
+    const v = parseInt(numEl.innerText);
+    if(v > 0){ numEl.innerText = v - 1; recalc(); }
+  });
+});
 
-            let mensagem = `*🍟 NOVO PEDIDO - M&R LANCHES E PIZZAS 🍕*\n\n`;
-            mensagem += `📍 *Endereço:* ${enderecoInput.value || 'Não informado'}\n`;
-            mensagem += `🔖 *Ponto de Referência:* ${pontoInput.value || 'Não informado'}\n\n`;
-            mensagem += `📋 *ITENS DO PEDIDO:*\n`;
+// ── FINALIZAR ──
+document.getElementById('btnFinalizar').addEventListener('click', () => {
+  if(!document.getElementById('btnFinalizar').classList.contains('ativo')) return;
 
-            let temItem = false;
+  const end   = endEl.value.trim() || 'Não informado';
+  const ref   = refEl.value.trim() || 'Não informado';
+  const maq   = document.getElementById('maqChk').checked ? 'Sim ✅' : 'Não';
+  const troco = document.getElementById('valorTroco').value.trim() || 'Não precisa';
+  const obs   = document.getElementById('obs').value.trim() || 'Nenhuma';
 
-            // Pega todos os itens com quantidade > 0
-            document.querySelectorAll('.item-card').forEach(card => {
-                const nome = card.querySelector('.item-nome').innerText;
-                const qtd = parseInt(card.querySelector('.qtd-valor').innerText);
-                if(qtd > 0) {
-                    mensagem += `• ${qtd}x ${nome}\n`;
-                    temItem = true;
-                }
-            });
+  let msg  = `*🍟 PEDIDO — M&R LANCHES E PIZZAS 🍕*\n\n`;
+  msg += `📍 *Endereço:* ${end}\n`;
+  msg += `🔖 *Referência:* ${ref}\n\n`;
+  msg += `📋 *ITENS:*\n`;
 
-            if(!temItem) {
-                alert('Adicione pelo menos um item ao pedido!');
-                return;
-            }
+  let total = 0;
+  document.querySelectorAll('.card[data-preco]').forEach(card => {
+    const qtd = parseInt(card.querySelector('.qtd-num').innerText);
+    if(qtd > 0){
+      const nome  = card.querySelector('.card-nome').innerText;
+      const preco = parseFloat(card.dataset.preco);
+      const saborEl = card.querySelector('.sabor-sel');
+      const sabor = saborEl && saborEl.value ? ` · ${saborEl.value}` : '';
+      const sub = qtd * preco;
+      total += sub;
+      msg += `• ${qtd}x ${nome}${sabor} — R$ ${sub.toLocaleString('pt-BR',{minimumFractionDigits:2})}\n`;
+    }
+  });
 
-            mensagem += `\n💳 *Forma de Pagamento:* ${document.getElementById('formaPagamento').value}\n`;
-            mensagem += `💵 *Troco para:* ${document.getElementById('valorTroco').value || 'Não precisa'}\n`;
-            mensagem += `📝 *Observações:* ${document.getElementById('obs').value || 'Nenhuma'}\n\n`;
-            mensagem += `_Aguardando confirmação, obrigado!_`;
+  msg += `\n💰 *TOTAL: R$ ${total.toLocaleString('pt-BR',{minimumFractionDigits:2})}*\n`;
+  msg += `\n💳 *Pagamento:* ${pagSel}\n`;
+  msg += `🖨️ *Maquininha:* ${maq}\n`;
+  msg += `💵 *Troco para:* ${troco}\n`;
+  msg += `📝 *Obs:* ${obs}\n\n`;
+  msg += `_Aguardando confirmação — obrigado!_ 🙏`;
 
-            // Envia para o número da loja
-            const numeroLoja = "5551991872470";
-            const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
-        });
+  window.open(`https://wa.me/5551991872470?text=${encodeURIComponent(msg)}`, '_blank');
+});
 
-    </script>
-
+// ── NAV PILLS ATIVO ──
+const secs = document.querySelectorAll('.sec-titulo');
+const pills = document.querySelectorAll('.cat-pill');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const id = e.target.id;
+      pills.forEach(p => {
+        p.classList.toggle('ativo', p.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, {rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
