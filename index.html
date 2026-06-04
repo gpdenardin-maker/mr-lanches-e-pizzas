@@ -3,41 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M&R Lanches e Pizzas - Dá Água na Boca!</title>
+    <title>M&R Lanches e Pizzas - Cardápio Digital</title>
+    <!-- Importação de fontes premium do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* Cores baseadas na identidade visual escura e quente da M&R Lanches */
         :root {
-            --bg-principal: #0d0d0d;
-            --bg-card: #1a1a1a;
-            --cor-destaque: #ff6a00;
+            --bg-principal: #0a0a0a;
+            --bg-card: #141414;
+            --cor-destaque: #ff5100;
+            --cor-destaque-glow: #ff7300;
             --cor-ouro: #ffb703;
             --texto-claro: #ffffff;
-            --texto-cinza: #b3b3b3;
+            --texto-cinza: #a8a8a8;
             --sucesso: #25d366;
+            --sucesso-hover: #1ebd52;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-principal);
             color: var(--texto-claro);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* Cabeçalho */
+        /* BARRA DE NAVEGAÇÃO */
         header {
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(13,13,13,0.7) 100%);
-            padding: 20px;
+            background: rgba(10, 10, 10, 0.85);
+            padding: 15px 20px;
             position: sticky;
             top: 0;
             z-index: 100;
             border-bottom: 2px solid var(--cor-destaque);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .header-container {
@@ -49,100 +58,221 @@
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            letter-spacing: 1px;
             color: var(--texto-claro);
-            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 81, 0, 0.3);
         }
 
         .logo span {
             color: var(--cor-destaque);
         }
 
-        .status-aberto {
+        .status-badge {
             background-color: var(--sucesso);
-            color: black;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
             animation: pulse 2s infinite;
         }
 
-        /* Banner Principal (Hero) */
+        .status-badge::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 50%;
+        }
+
+        /* HERO SECTION (BANNER PRINCIPAL) */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(13, 13, 13, 1)), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200') no-repeat center center/cover;
-            height: 450px;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.55), #0a0a0a), 
+                        url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600') no-repeat center center/cover;
+            height: 520px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 20px;
+            border-bottom: 1px solid #1a1a1a;
         }
 
-        .hero-content h1 {
-            font-size: 48px;
+        /* Efeito de fumaça/fogo sutil no topo do hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, var(--bg-principal));
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title-top {
+            font-family: 'Pacifico', cursive;
+            color: var(--cor-ouro);
+            font-size: 38px;
+            margin-bottom: -10px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 82px;
+            line-height: 0.9;
             color: var(--texto-claro);
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 10px rgba(255, 106, 0, 0.6);
+            margin-bottom: 15px;
+            text-shadow: 0px 4px 15px rgba(255, 81, 0, 0.6);
         }
 
-        .hero-content p {
-            font-size: 20px;
-            color: var(--cor-ouro);
-            margin: 15px 0 25px 0;
+        .hero p {
+            font-size: 18px;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, var(--cor-destaque) 0%, #ff2a00 100%);
+            color: var(--texto-claro);
+            text-decoration: none;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(255, 81, 0, 0.4);
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px var(--cor-destaque-glow);
+            background: linear-gradient(135deg, #ff6a00 0%, var(--cor-destaque) 100%);
+        }
+
+        /* CATEGORIAS / FILTROS */
+        .filtros-container {
+            max-width: 1200px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .filtros-container::-webkit-scrollbar {
+            display: none; /* Safari e Chrome */
+        }
+
+        .btn-filtro {
+            background-color: var(--bg-card);
+            color: var(--texto-claro);
+            border: 1px solid #222;
+            padding: 10px 24px;
+            border-radius: 30px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        /* Container do Cardápio */
+        .btn-filtro:hover, .btn-filtro.ativo {
+            background-color: var(--cor-destaque);
+            border-color: var(--cor-destaque);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(255, 81, 0, 0.3);
+        }
+
+        /* SEÇÃO DO CARDÁPIO */
         .cardapio-section {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 0 auto 60px auto;
             padding: 0 20px;
         }
 
+        .categoria-bloco {
+            margin-bottom: 50px;
+        }
+
         .categoria-titulo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            color: var(--cor-ouro);
             border-left: 5px solid var(--cor-destaque);
             padding-left: 15px;
-            margin: 40px 0 20px 0;
-            color: var(--cor-ouro);
-            font-size: 24px;
-            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
         .grid-produtos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
-        /* Card do Produto */
+        /* CARD DO PRODUTO */
         .card-produto {
             background-color: var(--bg-card);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid #2a2a2a;
-            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid #1c1c1c;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .card-produto:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--cor-destaque);
+            box-shadow: 0 10px 25px rgba(255, 81, 0, 0.15);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #1a1a1a;
         }
 
         .img-produto {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            background-color: #333;
+            transition: transform 0.5s ease;
+        }
+
+        .card-produto:hover .img-produto {
+            transform: scale(1.08);
         }
 
         .info-produto {
-            padding: 20px;
+            padding: 22px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -151,14 +281,16 @@
 
         .nome-produto {
             font-size: 20px;
+            font-weight: 800;
             color: var(--texto-claro);
             margin-bottom: 8px;
         }
 
         .desc-produto {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--texto-cinza);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
         .preco-pedido {
@@ -166,201 +298,359 @@
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #1e1e1e;
         }
 
         .preco {
             font-size: 22px;
-            color: var(--cor-destaque);
-            font-weight: bold;
+            color: var(--cor-ouro);
+            font-weight: 800;
         }
 
-        /* Botão de Pedido */
         .btn-pedir {
             background-color: var(--sucesso);
-            color: white;
+            color: #fff;
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background 0.2s;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s ease, transform 0.1s ease;
         }
 
         .btn-pedir:hover {
-            background-color: #20ba5a;
+            background-color: var(--sucesso-hover);
         }
 
-        /* Rodapé com Informações */
+        .btn-pedir:active {
+            transform: scale(0.95);
+        }
+
+        /* RODAPÉ (FOOTER) */
         footer {
             background-color: #050505;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 1px solid #1a1a1a;
+            padding: 50px 20px 40px 20px;
+            border-top: 2px solid var(--cor-destaque);
             text-align: center;
         }
 
         .footer-info {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--cor-destaque);
+        }
+
         .footer-info p {
-            margin: 10px 0;
+            margin: 12px 0;
             color: var(--texto-cinza);
+            font-size: 14px;
+        }
+
+        .footer-info i {
+            color: var(--cor-destaque);
+            margin-right: 8px;
         }
 
         .footer-info strong {
             color: var(--cor-ouro);
         }
 
-        /* Animação do botão aberto */
+        /* Logo do Desenvolvedor no Rodapé */
+        .desenvolvedor-container {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #141414;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .desenvolvedor-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .logo-desenvolvedor {
+            max-width: 140px;
+            height: auto;
+            display: block;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .logo-desenvolvedor:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* ANIMAÇÕES */
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
+        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 32px; }
-            .hero-content p { font-size: 16px; }
+            .hero {
+                height: 420px;
+            }
+            .hero-title-top {
+                font-size: 28px;
+            }
+            .hero h1 {
+                font-size: 52px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            .categoria-titulo {
+                font-size: 34px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Topo do Site -->
+    <!-- Topo / Header -->
     <header>
         <div class="header-container">
             <div class="logo">M&R <span>Lanches</span></div>
-            <div class="status-aberto">Aberto 24h</div>
+            <div class="status-badge">Aberto 24h</div>
         </div>
     </header>
 
-    <!-- Banner Principal que gera desejo -->
+    <!-- Seção Hero para chamar a atenção -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Bateu aquela fome?</h1>
-            <p>Os melhores Xis, Pizzas e Picados de Porto Alegre direto na sua mesa!</p>
+            <span class="hero-title-top">Bateu aquela fome?</span>
+            <h1>A gente resolve!</h1>
+            <p>Os Xis mais gigantes, Pizzas recheadas e Picados de Porto Alegre direto na sua mesa.</p>
+            <a href="#cardapio" class="hero-btn"><i class="fa-solid fa-utensils"></i> Ver o Cardápio</a>
         </div>
     </section>
 
-    <!-- Seção do Cardápio -->
-    <main class="cardapio-section">
+    <!-- Botões de Filtros Rápidos -->
+    <div class="filtros-container">
+        <button class="btn-filtro ativo" onclick="filtrar('todos', this)">Todos</button>
+        <button class="btn-filtro" onclick="filtrar('xis', this)">Os Gigantes Xis</button>
+        <button class="btn-filtro" onclick="filtrar('pizzas', this)">Pizzas</button>
+        <button class="btn-filtro" onclick="filtrar('picados', this)">Picados na Caixa</button>
+        <button class="btn-filtro" onclick="filtrar('porcoes', this)">Porções</button>
+    </div>
 
-        <!-- CATEGORIA: XIS -->
-        <h2 class="categoria-titulo">Os Melhores Xis</h2>
-        <div class="grid-produtos">
-            
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400" alt="Xis Carne" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Xis Carne</h3>
-                        <p class="desc-produto">Pão gigante, maionese artesanal, carne bem temperada, queijo derretido, alface e tomate frescos.</p>
+    <!-- Seção Principal de Produtos -->
+    <main class="cardapio-section" id="cardapio">
+
+        <!-- CATEGORIA: OS GIGANTES XIS -->
+        <div class="categoria-bloco" data-categoria="xis">
+            <h2 class="categoria-titulo">Os Gigantes Xis</h2>
+            <div class="grid-produtos">
+                
+                <div class="card-produto">
+                    <div class="img-container">
+                        <!-- Tenta carregar a imagem do seu xis real se ela estiver na pasta -->
+                        <img src="image_69346d.png" alt="Xis da Casa" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400';">
                     </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 19,90</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20um%20Xis%20Carne" target="_blank" class="btn-pedir">Pedir no Whats</a>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Xis Carne</h3>
+                            <p class="desc-produto">Super prensado! Pão gigante, maionese especial M&R, carne grelhada bem temperada, queijo derretido, alface fresca e tomate.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 19,90</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Xis%20Carne*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400" alt="Xis Coração" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Xis Coração</h3>
-                        <p class="desc-produto">Aquele clássico gaúcho caprichado com muito coração de frango grelhado e queijo derretendo.</p>
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="image_69346d.png" alt="Xis Coração" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400';">
                     </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 28,00</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20um%20Xis%20Coração" target="_blank" class="btn-pedir">Pedir no Whats</a>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Xis Coração</h3>
+                            <p class="desc-produto">O clássico gaúcho campeão de vendas! Lotação máxima de corações de galinha grelhados, queijo, salada e nossa maravilhosa maionese caseira.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 28,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Xis%20Coração*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?q=80&w=400" alt="Xis Strogonoff" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Xis Strogonoff</h3>
-                        <p class="desc-produto">Super recheado com strogonoff cremoso de verdade e batata palha crocante.</p>
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="image_69346d.png" alt="Xis Strogonoff" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?q=80&w=400';">
                     </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 27,00</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20um%20Xis%20Strogonoff" target="_blank" class="btn-pedir">Pedir no Whats</a>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Xis Strogonoff</h3>
+                            <p class="desc-produto">Recheio super cremoso de strogonoff de carne feito no dia, finalizado com queijo derretido e batata palha fininha.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 27,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Xis%20Strogonoff*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
         <!-- CATEGORIA: PIZZAS -->
-        <h2 class="categoria-titulo">Pizzas Gigantes e Recheadas</h2>
-        <div class="grid-produtos">
-            
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400" alt="Pizza Família" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Pizza Família (Salgada/Doce)</h3>
-                        <p class="desc-produto">Escolha seus sabores favoritos: Calabresa, Coração, Frango com Catupiry, Chocolate ou Prestígio.</p>
+        <div class="categoria-bloco" data-categoria="pizzas">
+            <h2 class="categoria-titulo">Pizzas Irresistíveis</h2>
+            <div class="grid-produtos">
+                
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="image_693503.png" alt="Pizza Família Combo" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400';">
                     </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 90,00</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20uma%20Pizza%20Família" target="_blank" class="btn-pedir">Pedir no Whats</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=400" alt="Pizza Média Combo" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Pizza Média Combo</h3>
-                        <p class="desc-produto">O tamanho ideal para sua janta com o melhor custo-benefício e sabores irresistíveis.</p>
-                    </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 90,00</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20uma%20Pizza%20Média%20Combo" target="_blank" class="btn-pedir">Pedir no Whats</a>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Pizza Família Combo</h3>
+                            <p class="desc-produto">Massa artesanal super macia! Escolha até 4 sabores deliciosos (salgados ou doces) e ganhe batata frita de acompanhamento.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 110,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Pizza%20Família%20Combo*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="image_693503.png" alt="Pizza Média Combo" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=400';">
+                    </div>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Pizza Média Combo</h3>
+                            <p class="desc-produto">A janta perfeita! Pizza média bem recheada do seu sabor favorito (Coração, Calabresa, Portuguesa, etc) + batatinha frita.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 90,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Pizza%20Média%20Combo*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <!-- CATEGORIA: PICADOS E PORÇÕES -->
-        <h2 class="categoria-titulo">Picados e Porções da Casa</h2>
-        <div class="grid-produtos">
-            
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=400" alt="Picado Tradicional" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Picado Tradicional Médio</h3>
-                        <p class="desc-produto">Aquela tábua caprichada com carnes selecionadas picadas, perfeita para dividir com os amigos.</p>
+        <!-- CATEGORIA: PICADOS NA CAIXA -->
+        <div class="categoria-bloco" data-categoria="picados">
+            <h2 class="categoria-titulo">Picados na Caixa</h2>
+            <div class="grid-produtos">
+                
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="image_69308a.png" alt="Picado Especial M&R" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=400';">
                     </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 90,00</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20um%20Picado%20Tradicional%20Médio" target="_blank" class="btn-pedir">Pedir no Whats</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-produto">
-                <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=400" alt="Porção Fritas Cheddar e Bacon" class="img-produto">
-                <div class="info-produto">
-                    <div>
-                        <h3 class="nome-produto">Fritas Média Cheddar e Bacon</h3>
-                        <p class="desc-produto">Batata frita sequinha e crocante, coberta com uma camada generosa de cheddar cremoso e muito bacon.</p>
-                    </div>
-                    <div class="preco-pedido">
-                        <span class="preco">R$ 40,00</span>
-                        <a href="https://wa.me/5551991872470?text=Quero%20uma%20Batata%20Média%20com%20Cheddar%20e%20Bacon" target="_blank" class="btn-pedir">Pedir no Whats</a>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Picado Tradicional Médio</h3>
+                            <p class="desc-produto">Fartura total! Uma caixa sextavada com batata frita coberta com muito cheddar cremoso, coração de galinha, cubos de carne grelhada e frango bem temperado.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 90,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Picado%20Tradicional%20Médio*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="image_69308a.png" alt="Picado Tradicional Pequeno" class="img-produto" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=400';">
+                    </div>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Picado Tradicional Pequeno</h3>
+                            <p class="desc-produto">A versão menor do nosso picado super recheado, mas com a mesma fartura de carnes variadas e batata com queijo.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 80,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Picado%20Tradicional%20Pequeno*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CATEGORIA: PORÇÕES -->
+        <div class="categoria-bloco" data-categoria="porcoes">
+            <h2 class="categoria-titulo">Porções e Acompanhamentos</h2>
+            <div class="grid-produtos">
+                
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=400" alt="Batata Frita Cheddar e Bacon" class="img-produto">
+                    </div>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Porção Média Cheddar e Bacon</h3>
+                            <p class="desc-produto">Batata frita super crocante e sequinha por dentro, banhada com cheddar cremoso e pedacinhos crocantes de bacon frito.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 40,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Porção%20Média%20Cheddar%20e%20Bacon*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-produto">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?q=80&w=400" alt="Batata Frita Coração" class="img-produto">
+                    </div>
+                    <div class="info-produto">
+                        <div>
+                            <h3 class="nome-produto">Porção Pequena Coração</h3>
+                            <p class="desc-produto">Batatinhas fritas palito acompanhadas de coraçõezinhos de frango temperados e fritos no ponto perfeito.</p>
+                        </div>
+                        <div class="preco-pedido">
+                            <span class="preco">R$ 35,00</span>
+                            <a href="https://wa.me/5551991872470?text=Olá!%20Quero%20fazer%20um%20pedido:%20*1x%20Porção%20Pequena%20com%20Coração*" target="_blank" class="btn-pedir">
+                                <i class="fa-brands fa-whatsapp"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </main>
@@ -368,13 +658,41 @@
     <!-- Rodapé informativo -->
     <footer>
         <div class="footer-info">
-            <h2>M&R Lanches e Pizzas</h2>
-            <p>📍 Av. Bernardino Silveira Amorim, 2147 - Porto Alegre - RS</p>
-            <p>📞 Faça seu pedido pelo Telefone/WhatsApp: <strong>(51) 99187-2470</strong></p>
-            <p>⏰ Funcionamento: <strong>Aberto 24 Horas</strong></p>
-            <p style="font-size: 12px; margin-top: 20px; color: #555;">&copy; 2026 M&R Lanches. Todos os direitos reservados.</p>
+            <div class="footer-logo">M&R <span>Lanches</span></div>
+            <p><i class="fa-solid fa-location-dot"></i> Av. Bernardino Silveira Amorim, 2147 - Porto Alegre - RS</p>
+            <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <strong>(51) 99187-2470</strong></p>
+            <p><i class="fa-solid fa-clock"></i> Funcionamento: <strong>Aberto 24 Horas</strong></p>
+            <p style="font-size: 11px; color: #444; margin-top: 25px;">&copy; 2026 M&R Lanches e Pizzas. Todos os direitos reservados.</p>
+        </div>
+
+        <!-- Seção do Desenvolvedor (Seu Logo) -->
+        <div class="desenvolvedor-container">
+            <div class="desenvolvedor-label">Desenvolvido por</div>
+            <img src="Design_sem_nome__5_-removebg-preview-removebg-preview.png" alt="Logo do Desenvolvedor" class="logo-desenvolvedor">
         </div>
     </footer>
+
+    <!-- Script para os Filtros do Cardápio funcionar na tela -->
+    <script>
+        function filtrar(categoria, botao) {
+            // Remove a classe 'ativo' de todos os botões de filtro
+            document.querySelectorAll('.btn-filtro').forEach(btn => {
+                btn.classList.remove('ativo');
+            });
+            // Adiciona a classe ativo no botão que foi clicado
+            botao.classList.add('ativo');
+
+            // Filtra os blocos de categoria
+            const blocos = document.querySelectorAll('.categoria-bloco');
+            blocos.forEach(bloco => {
+                if (categoria === 'todos' || bloco.getAttribute('data-categoria') === categoria) {
+                    bloco.style.display = 'block';
+                } else {
+                    bloco.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
