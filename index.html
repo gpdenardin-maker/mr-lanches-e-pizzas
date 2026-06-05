@@ -58,7 +58,6 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 .cat-pill:hover,.cat-pill.ativo{background:var(--laranja);border-color:var(--laranja);color:#fff;}
 
 /* FOTO CATEGORIA */
-.cat-foto{width:100%;height:220px;object-fit:cover;border-radius:14px;margin-bottom:20px;display:block;}
 .cat-foto-wrap{position:relative;margin-bottom:20px;}
 .cat-foto-wrap img{width:100%;height:220px;object-fit:cover;border-radius:14px;display:block;}
 .cat-foto-wrap::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:80px;background:linear-gradient(transparent,var(--bg));border-radius:0 0 14px 14px;pointer-events:none;}
@@ -78,12 +77,12 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 .card-preco{font-weight:800;font-size:14px;color:var(--ouro);}
 .card-desc{font-size:12px;color:var(--cinza);line-height:1.5;}
 
-/* OBS INPUT */
+/* OBS */
 .obs-card{width:100%;background:#1a1a1a;border:1px solid #2a2a2a;color:#ccc;padding:8px 11px;border-radius:8px;font-size:12px;resize:none;transition:.25s;margin-top:2px;}
 .obs-card::placeholder{color:#555;}
 .obs-card:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 2px rgba(255,81,0,.1);}
 
-/* SELETOR SABORES PIZZA */
+/* SABORES PIZZA */
 .sabores-wrap{display:flex;flex-direction:column;gap:6px;margin-top:2px;}
 .sabores-wrap label{font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.4px;}
 .sabor-linha{display:flex;align-items:center;gap:6px;}
@@ -100,8 +99,15 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 .qtd-btn:active{transform:scale(.92);}
 .qtd-num{font-weight:800;font-size:16px;min-width:22px;text-align:center;}
 
+/* MODALIDADE */
+.mod-opcoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+.mod-opt{flex:1 1 140px;background:#1c1c1c;border:2px solid #2e2e2e;border-radius:10px;padding:13px 14px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;user-select:none;}
+.mod-opt:hover{border-color:#444;}
+.mod-opt.sel{border-color:var(--laranja);background:rgba(255,81,0,.1);color:#fff;}
+.mod-opt i{font-size:17px;color:var(--laranja);}
+
 /* ENDEREÇO */
-.bloco-end{background:var(--bg2);border:2px solid var(--laranja);border-radius:16px;padding:22px 24px;max-width:860px;margin:48px auto 0;box-shadow:0 8px 30px rgba(0,0,0,.5);}
+.bloco-end{background:var(--bg2);border:2px solid var(--laranja);border-radius:16px;padding:22px 24px;max-width:860px;margin:0 auto 20px;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:.3s;}
 .bloco-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
 .end-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;}
 @media(max-width:560px){.end-grid{grid-template-columns:1fr;}}
@@ -110,8 +116,8 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 .inp:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(255,81,0,.1);}
 
 /* PAGAMENTO */
-.bloco-pag{background:var(--bg2);border:1px solid var(--borda);border-radius:16px;padding:22px 24px;max-width:860px;margin:20px auto 0;}
-.pag-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.bloco-pag{background:var(--bg2);border:1px solid var(--borda);border-radius:16px;padding:22px 24px;max-width:860px;margin:0 auto 0;}
+.sec-pag-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:5px;}
 .pag-sub{font-size:11px;color:var(--cinza);margin-bottom:18px;}
 .pag-opcoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
 .pag-opt{flex:1 1 120px;background:#1c1c1c;border:2px solid #2e2e2e;border-radius:10px;padding:11px 14px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;user-select:none;}
@@ -130,12 +136,6 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 .toggler input:checked+.tog-slider{background:var(--laranja);}
 .toggler input:checked+.tog-slider::before{transform:translateX(21px);}
 .campo-mt{margin-top:14px;}
-
-/* TAXA DE ENTREGA */
-.taxa-row{display:flex;align-items:center;justify-content:space-between;background:#1c1c1c;border-radius:10px;padding:13px 15px;margin-bottom:16px;}
-.taxa-info strong{font-size:13px;display:block;}
-.taxa-info small{font-size:11px;color:var(--cinza);}
-.taxa-valor{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--ouro);letter-spacing:1px;}
 
 /* RESUMO */
 .resumo-box{background:#0f0f0f;border:1px solid var(--borda);border-radius:12px;padding:16px 18px;margin-top:18px;}
@@ -210,92 +210,23 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 
   <main id="cardapio">
 
-    <!-- ══ PICADOS & PORÇÕES ══ -->
+    <!-- PICADOS -->
     <h2 class="sec-titulo" id="sec-picados"><i class="fa-solid fa-pot-food"></i> Picados &amp; Porções</h2>
-    <div class="cat-foto-wrap">
-      <img src="picado.png" alt="Picado" onerror="this.parentElement.style.display='none'">
-    </div>
+    <div class="cat-foto-wrap"><img src="picado.png" alt="Picado" onerror="this.parentElement.style.display='none'"></div>
     <div class="grid">
-
-      <div class="card" data-preco="90.00">
-        <div class="card-body">
-          <p class="card-nome">Picado Médio Tradicional</p>
-          <p class="card-preco">R$ 90,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações (ex: sem cebola…)"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="80.00">
-        <div class="card-body">
-          <p class="card-nome">Picado Pequeno Tradicional</p>
-          <p class="card-preco">R$ 80,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações (ex: sem cebola…)"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="25.00">
-        <div class="card-body">
-          <p class="card-nome">Porção Pequena Fritas</p>
-          <p class="card-preco">R$ 25,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="30.00">
-        <div class="card-body">
-          <p class="card-nome">Porção Média Fritas</p>
-          <p class="card-preco">R$ 30,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="30.00">
-        <div class="card-body">
-          <p class="card-nome">Porção Pequena Bacon Cheddar</p>
-          <p class="card-preco">R$ 30,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="40.00">
-        <div class="card-body">
-          <p class="card-nome">Porção Média Bacon Cheddar</p>
-          <p class="card-preco">R$ 40,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="35.00">
-        <div class="card-body">
-          <p class="card-nome">Porção Pequena Coração</p>
-          <p class="card-preco">R$ 35,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
-      <div class="card" data-preco="45.00">
-        <div class="card-body">
-          <p class="card-nome">Porção Média Coração</p>
-          <p class="card-preco">R$ 45,00</p>
-          <textarea class="obs-card" rows="2" placeholder="Observações…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
-
+      <div class="card" data-preco="90.00"><div class="card-body"><p class="card-nome">Picado Médio Tradicional</p><p class="card-preco">R$ 90,00</p><textarea class="obs-card" rows="2" placeholder="Observações (ex: sem cebola…)"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="80.00"><div class="card-body"><p class="card-nome">Picado Pequeno Tradicional</p><p class="card-preco">R$ 80,00</p><textarea class="obs-card" rows="2" placeholder="Observações (ex: sem cebola…)"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="25.00"><div class="card-body"><p class="card-nome">Porção Pequena Fritas</p><p class="card-preco">R$ 25,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="30.00"><div class="card-body"><p class="card-nome">Porção Média Fritas</p><p class="card-preco">R$ 30,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="30.00"><div class="card-body"><p class="card-nome">Porção Pequena Bacon Cheddar</p><p class="card-preco">R$ 30,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="40.00"><div class="card-body"><p class="card-nome">Porção Média Bacon Cheddar</p><p class="card-preco">R$ 40,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="35.00"><div class="card-body"><p class="card-nome">Porção Pequena Coração</p><p class="card-preco">R$ 35,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="45.00"><div class="card-body"><p class="card-nome">Porção Média Coração</p><p class="card-preco">R$ 45,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ══ XIS ══ -->
+    <!-- XIS -->
     <h2 class="sec-titulo" id="sec-xis"><i class="fa-solid fa-burger"></i> Xis</h2>
-    <div class="cat-foto-wrap">
-      <img src="xis.jpg" alt="Xis" onerror="this.parentElement.style.display='none'">
-    </div>
+    <div class="cat-foto-wrap"><img src="xis.jpg" alt="Xis" onerror="this.parentElement.style.display='none'"></div>
     <div class="grid">
       <div class="card" data-preco="19.90"><div class="card-body"><p class="card-nome">Xis Carne</p><p class="card-preco">R$ 19,90</p><textarea class="obs-card" rows="2" placeholder="Observações (ex: sem presunto…)"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Frango</p><p class="card-preco">R$ 22,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
@@ -308,21 +239,21 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
       <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Acebolado</p><p class="card-preco">R$ 22,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ══ TORRADAS ══ -->
+    <!-- TORRADAS -->
     <h2 class="sec-titulo" id="sec-torradas"><i class="fa-solid fa-bread-slice"></i> Torradas</h2>
     <div class="grid">
       <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Torrada Simples</p><p class="card-preco">R$ 10,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Torrada com Carne</p><p class="card-preco">R$ 15,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ══ HAMBÚRGUER ══ -->
+    <!-- HAMBÚRGUER -->
     <h2 class="sec-titulo" id="sec-hamburguer"><i class="fa-solid fa-burger"></i> Hambúrguer</h2>
     <div class="grid">
       <div class="card" data-preco="19.90"><div class="card-body"><p class="card-nome">Hambúrguer Simples</p><p class="card-preco">R$ 19,90</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Hambúrguer Duplo</p><p class="card-preco">R$ 24,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ══ CACHORRO QUENTE ══ -->
+    <!-- CACHORRO QUENTE -->
     <h2 class="sec-titulo" id="sec-cq"><i class="fa-solid fa-hotdog"></i> Cachorro Quente</h2>
     <div class="grid">
       <div class="card" data-preco="13.00"><div class="card-body"><p class="card-nome">Cachorro Quente Simples</p><p class="card-preco">R$ 13,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
@@ -333,116 +264,68 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
       <div class="card" data-preco="19.00"><div class="card-body"><p class="card-nome">Cachorro Quente Coração</p><p class="card-preco">R$ 19,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ══ PIZZAS ══ -->
+    <!-- PIZZAS -->
     <h2 class="sec-titulo" id="sec-pizzas"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
-    <div class="cat-foto-wrap">
-      <img src="pizza.png" alt="Pizza" onerror="this.parentElement.style.display='none'">
-    </div>
+    <div class="cat-foto-wrap"><img src="pizza.png" alt="Pizza" onerror="this.parentElement.style.display='none'"></div>
     <div class="grid">
 
-      <div class="card" data-preco="90.00">
-        <div class="card-body">
-          <p class="card-nome">Pizza Família</p>
-          <p class="card-preco">R$ 90,00</p>
-          <div class="sabores-wrap">
-            <label>Sabores (até 4)</label>
-            <div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-          </div>
-          <textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
+      <div class="card" data-preco="90.00"><div class="card-body"><p class="card-nome">Pizza Família</p><p class="card-preco">R$ 90,00</p><div class="sabores-wrap"><label>Sabores (até 4)</label><div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div></div><textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
 
-      <div class="card" data-preco="110.00">
-        <div class="card-body">
-          <p class="card-nome">Pizza Família Combo</p>
-          <p class="card-preco">R$ 110,00</p>
-          <p class="card-desc">Acompanha bebida inclusa.</p>
-          <div class="sabores-wrap">
-            <label>Sabores (até 4)</label>
-            <div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-          </div>
-          <textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
+      <div class="card" data-preco="110.00"><div class="card-body"><p class="card-nome">Pizza Família Combo</p><p class="card-preco">R$ 110,00</p><p class="card-desc">Acompanha bebida inclusa.</p><div class="sabores-wrap"><label>Sabores (até 4)</label><div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div></div><textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
 
-      <div class="card" data-preco="65.00">
-        <div class="card-body">
-          <p class="card-nome">Pizza Média</p>
-          <p class="card-preco">R$ 65,00</p>
-          <div class="sabores-wrap">
-            <label>Sabores (até 4)</label>
-            <div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-          </div>
-          <textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
+      <div class="card" data-preco="65.00"><div class="card-body"><p class="card-nome">Pizza Média</p><p class="card-preco">R$ 65,00</p><div class="sabores-wrap"><label>Sabores (até 4)</label><div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div></div><textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
 
-      <div class="card" data-preco="90.00">
-        <div class="card-body">
-          <p class="card-nome">Pizza Média Combo</p>
-          <p class="card-preco">R$ 90,00</p>
-          <p class="card-desc">Acompanha bebida inclusa.</p>
-          <div class="sabores-wrap">
-            <label>Sabores (até 4)</label>
-            <div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-            <div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div>
-          </div>
-          <textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-      </div>
+      <div class="card" data-preco="90.00"><div class="card-body"><p class="card-nome">Pizza Média Combo</p><p class="card-preco">R$ 90,00</p><p class="card-desc">Acompanha bebida inclusa.</p><div class="sabores-wrap"><label>Sabores (até 4)</label><div class="sabor-linha"><span class="sabor-num">1°</span><select class="sabor-sel"><option value="">— escolha —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">2°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">3°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div><div class="sabor-linha"><span class="sabor-num">4°</span><select class="sabor-sel"><option value="">— opcional —</option><optgroup label="Salgados"><option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option><option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option><option>Mussarela</option><option>4 Queijos</option><option>Bacon</option><option>Milho</option><option>Strogonoff</option><option>Presunto</option><option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option></optgroup><optgroup label="Doces"><option>Chocolate Preto</option><option>Chocolate Branco</option><option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option></optgroup></select></div></div><textarea class="obs-card" rows="2" placeholder="Observações da pizza…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
 
     </div>
 
-    <!-- ══ BEBIDAS ══ -->
+    <!-- BEBIDAS -->
     <h2 class="sec-titulo" id="sec-bebidas"><i class="fa-solid fa-bottle-water"></i> Bebidas</h2>
-    <div class="cat-foto-wrap">
-      <img src="bebidas.jpg" alt="Bebidas" onerror="this.parentElement.style.display='none'">
-    </div>
+    <div class="cat-foto-wrap"><img src="bebidas.jpg" alt="Bebidas" onerror="this.parentElement.style.display='none'"></div>
     <div class="grid">
       <div class="card" data-preco="6.00"><div class="card-body"><p class="card-nome">Coca-Cola Lata 350ml</p><p class="card-preco">R$ 6,00</p><textarea class="obs-card" rows="2" placeholder="Observações (ex: bem gelada…)"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Coca-Cola 600ml</p><p class="card-preco">R$ 10,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="6.00"><div class="card-body"><p class="card-nome">Guaraná Antarctica Lata 350ml</p><p class="card-preco">R$ 6,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Guaraná Antarctica 600ml</p><p class="card-preco">R$ 10,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="5.00"><div class="card-body"><p class="card-nome">Água Mineral 500ml</p><p class="card-preco">R$ 5,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
-      <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Coca-Cola Zero 2L</p><p class="card-preco">R$ 15,00</p><textarea class="obs-card" rows="2" placeholder="Observações (ex: uva, laranja…)"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Coca-Cola Zero 2L</p><p class="card-preco">R$ 15,00</p><textarea class="obs-card" rows="2" placeholder="Observações…"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="9.00"><div class="card-body"><p class="card-nome">Cerveja Latão 473ml</p><p class="card-preco">R$ 9,00</p><textarea class="obs-card" rows="2" placeholder="Observações (ex: bem gelada…)"></textarea><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-    <!-- ══ ENDEREÇO ══ -->
-    <div class="bloco-end">
-      <div class="bloco-titulo"><i class="fa-solid fa-location-dot"></i> Endereço de Entrega</div>
-      <div class="end-grid">
-        <div class="campo">
-          <label>Endereço completo</label>
-          <input type="text" id="enderecoEntrega" class="inp" placeholder="Rua, Número, Bairro, Complemento">
-        </div>
-        <div class="campo">
-          <label>Ponto de Referência</label>
-          <input type="text" id="pontoRef" class="inp" placeholder="Perto de onde?">
+    <!-- ══ MODALIDADE ══ -->
+    <div class="bloco-pag" style="margin-top:48px;">
+      <div class="sec-pag-titulo"><i class="fa-solid fa-location-arrow"></i> Como vai receber?</div>
+      <p class="pag-sub">Escolha a modalidade antes de finalizar.</p>
+
+      <div class="campo" style="margin-bottom:16px;">
+        <label>Seu nome</label>
+        <input type="text" id="nomeCliente" class="inp" placeholder="Como devemos te chamar?">
+      </div>
+
+      <div class="mod-opcoes">
+        <div class="mod-opt sel" data-mod="tele"><i class="fa-solid fa-motorcycle"></i> Tele-entrega</div>
+        <div class="mod-opt" data-mod="retirar"><i class="fa-solid fa-store"></i> Retirar no local</div>
+        <div class="mod-opt" data-mod="local"><i class="fa-solid fa-utensils"></i> Comer no local</div>
+      </div>
+
+      <!-- ENDEREÇO — só aparece na tele-entrega -->
+      <div id="blocoEnd" class="bloco-end">
+        <div class="bloco-titulo"><i class="fa-solid fa-location-dot"></i> Endereço de Entrega</div>
+        <div class="end-grid">
+          <div class="campo">
+            <label>Endereço completo</label>
+            <input type="text" id="enderecoEntrega" class="inp" placeholder="Rua, Número, Bairro, Complemento">
+          </div>
+          <div class="campo">
+            <label>Ponto de Referência</label>
+            <input type="text" id="pontoRef" class="inp" placeholder="Perto de onde?">
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ══ PAGAMENTO ══ -->
-    <div class="bloco-pag">
-      <div class="pag-titulo"><i class="fa-solid fa-sack-dollar"></i> Forma de Pagamento</div>
+      <!-- PAGAMENTO -->
+      <div class="sec-pag-titulo" style="margin-top:20px;"><i class="fa-solid fa-sack-dollar"></i> Forma de Pagamento</div>
       <p class="pag-sub">Escolha como prefere pagar hoje.</p>
-
       <div class="pag-opcoes">
         <div class="pag-opt sel" data-pag="Dinheiro"><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</div>
         <div class="pag-opt" data-pag="Pix"><i class="fa-brands fa-pix"></i> Pix</div>
@@ -466,15 +349,15 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
         <input type="text" id="valorTroco" class="inp" placeholder="Ex: R$ 50,00 — deixe em branco se não precisar">
       </div>
 
-      <!-- RESUMO DO PEDIDO COM TAXA -->
+      <!-- RESUMO -->
       <div class="resumo-box" id="resumoBox" style="display:none;">
         <div id="resumoItens"></div>
-        <div class="resumo-linha"><span>🛵 Taxa de entrega</span><span>R$ 5,00</span></div>
+        <div class="resumo-linha" id="linhaTaxa"><span>🛵 Taxa de entrega</span><span>R$ 5,00</span></div>
         <div class="resumo-linha total"><span>Total</span><span id="resumoTotal">R$ 0,00</span></div>
       </div>
     </div>
 
-    <!-- BAIRROS ATENDIDOS -->
+    <!-- BAIRROS -->
     <div class="aviso-bairros">
       <p><strong>🛵 Tele-entrega disponível nos bairros:</strong>
       Santa Rosa, Sarandi, Santa Fé, Rubem Berta, Costa e Silva, e adjacências.<br>
@@ -496,7 +379,7 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 <div class="barra">
   <div class="barra-inner">
     <div class="barra-esq">
-      <span class="barra-label">Total c/ entrega</span>
+      <span class="barra-label" id="barraLabel">Total c/ entrega</span>
       <span class="barra-total" id="barraTotal">R$ 0,00</span>
       <span class="barra-qtd" id="barraQtd">Adicione itens para começar</span>
     </div>
@@ -508,6 +391,18 @@ header{background:rgba(10,10,10,.93);padding:13px 20px;position:sticky;top:0;z-i
 
 <script>
 const TAXA = 5.00;
+let modSel = 'tele';
+let pagSel = 'Dinheiro';
+
+// ── NÚMERO DO PEDIDO (data+hora) ──
+function gerarNumeroPedido() {
+  const agora = new Date();
+  const dia  = String(agora.getDate()).padStart(2,'0');
+  const mes  = String(agora.getMonth()+1).padStart(2,'0');
+  const hora = String(agora.getHours()).padStart(2,'0');
+  const min  = String(agora.getMinutes()).padStart(2,'0');
+  return `#${dia}${mes}-${hora}${min}`;
+}
 
 // ── ENDEREÇO SALVO ──
 const endEl = document.getElementById('enderecoEntrega');
@@ -517,8 +412,19 @@ if(localStorage.getItem('mrRef')) refEl.value = localStorage.getItem('mrRef');
 endEl.addEventListener('input', () => localStorage.setItem('mrEnd', endEl.value));
 refEl.addEventListener('input', () => localStorage.setItem('mrRef', refEl.value));
 
-// ── FORMA DE PAGAMENTO ──
-let pagSel = 'Dinheiro';
+// ── MODALIDADE ──
+document.querySelectorAll('.mod-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.mod-opt').forEach(o => o.classList.remove('sel'));
+    opt.classList.add('sel');
+    modSel = opt.dataset.mod;
+    // mostra/oculta campo endereço
+    document.getElementById('blocoEnd').style.display = modSel === 'tele' ? 'block' : 'none';
+    recalc();
+  });
+});
+
+// ── PAGAMENTO ──
 document.querySelectorAll('.pag-opt').forEach(opt => {
   opt.addEventListener('click', () => {
     document.querySelectorAll('.pag-opt').forEach(o => o.classList.remove('sel'));
@@ -530,37 +436,40 @@ document.querySelectorAll('.pag-opt').forEach(opt => {
 // ── RECALCULAR ──
 function recalc() {
   let subtotal = 0, qtdTotal = 0;
-  const resumoItensEl = document.getElementById('resumoItens');
   let resumoHTML = '';
+  const isTele = modSel === 'tele';
 
   document.querySelectorAll('.card[data-preco]').forEach(card => {
-    const qtd = parseInt(card.querySelector('.qtd-num').innerText);
+    const qtd   = parseInt(card.querySelector('.qtd-num').innerText);
     const preco = parseFloat(card.dataset.preco);
-    const sub = qtd * preco;
+    const sub   = qtd * preco;
     subtotal += sub;
     qtdTotal += qtd;
     card.classList.toggle('tem-item', qtd > 0);
-
     if(qtd > 0) {
       const nome = card.querySelector('.card-nome').innerText;
       resumoHTML += `<div class="resumo-linha"><span>${qtd}× ${nome}</span><span>R$ ${sub.toLocaleString('pt-BR',{minimumFractionDigits:2})}</span></div>`;
     }
   });
 
-  const total = qtdTotal > 0 ? subtotal + TAXA : 0;
+  const taxa  = isTele ? TAXA : 0;
+  const total = qtdTotal > 0 ? subtotal + taxa : 0;
 
   // barra
+  document.getElementById('barraLabel').innerText = isTele ? 'Total c/ entrega' : 'Total do pedido';
   document.getElementById('barraTotal').innerText = 'R$ ' + total.toLocaleString('pt-BR',{minimumFractionDigits:2});
-  const btn = document.getElementById('btnFinalizar');
+  document.getElementById('linhaTaxa').style.display = isTele ? 'flex' : 'none';
 
+  const btn = document.getElementById('btnFinalizar');
   if(qtdTotal === 0) {
     document.getElementById('barraQtd').innerText = 'Adicione itens para começar';
     btn.classList.remove('ativo');
     document.getElementById('resumoBox').style.display = 'none';
   } else {
-    document.getElementById('barraQtd').innerText = qtdTotal === 1 ? '1 item + entrega R$ 5,00' : qtdTotal + ' itens + entrega R$ 5,00';
+    const taxaStr = isTele ? ' + entrega R$ 5,00' : '';
+    document.getElementById('barraQtd').innerText = qtdTotal + (qtdTotal === 1 ? ' item' : ' itens') + taxaStr;
     btn.classList.add('ativo');
-    resumoItensEl.innerHTML = resumoHTML;
+    document.getElementById('resumoItens').innerHTML = resumoHTML;
     document.getElementById('resumoTotal').innerText = 'R$ ' + total.toLocaleString('pt-BR',{minimumFractionDigits:2});
     document.getElementById('resumoBox').style.display = 'block';
   }
@@ -569,7 +478,7 @@ function recalc() {
 // ── BOTÕES +/− ──
 document.querySelectorAll('.card[data-preco]').forEach(card => {
   const numEl = card.querySelector('.qtd-num');
-  card.querySelector('.mais').addEventListener('click', () => { numEl.innerText = parseInt(numEl.innerText)+1; recalc(); });
+  card.querySelector('.mais').addEventListener('click',  () => { numEl.innerText = parseInt(numEl.innerText)+1; recalc(); });
   card.querySelector('.menos').addEventListener('click', () => { const v=parseInt(numEl.innerText); if(v>0){numEl.innerText=v-1; recalc();} });
 });
 
@@ -577,15 +486,24 @@ document.querySelectorAll('.card[data-preco]').forEach(card => {
 document.getElementById('btnFinalizar').addEventListener('click', () => {
   if(!document.getElementById('btnFinalizar').classList.contains('ativo')) return;
 
-  const end   = endEl.value.trim() || 'Não informado';
-  const ref   = refEl.value.trim() || 'Não informado';
-  const maq   = document.getElementById('maqChk').checked ? 'Sim ✅' : 'Não';
-  const troco = document.getElementById('valorTroco').value.trim() || 'Não precisa';
+  const isTele   = modSel === 'tele';
+  const modLabel = modSel === 'tele' ? 'Tele-entrega 🛵' : modSel === 'retirar' ? 'Retirar no local 🏃' : 'Comer no local 🍽️';
+  const nome     = document.getElementById('nomeCliente').value.trim() || 'Não informado';
+  const numPed   = gerarNumeroPedido();
+  const end      = endEl.value.trim() || 'Não informado';
+  const ref      = refEl.value.trim() || 'Não informado';
+  const maq      = document.getElementById('maqChk').checked ? 'Sim ✅' : 'Não';
+  const troco    = document.getElementById('valorTroco').value.trim() || 'Não precisa';
 
-  let msg = `*🍟 PEDIDO — M&R LANCHES E PIZZAS 🍕*\n\n`;
-  msg += `📍 *Endereço:* ${end}\n`;
-  msg += `🔖 *Referência:* ${ref}\n\n`;
-  msg += `📋 *ITENS:*\n`;
+  let msg = `*🍟 PEDIDO ${numPed} — M&R LANCHES E PIZZAS 🍕*\n\n`;
+  msg += `👤 *Cliente:* ${nome}\n`;
+  msg += `🔢 *Nº do Pedido:* ${numPed}\n`;
+  msg += `🚀 *Modalidade:* ${modLabel}\n`;
+  if(isTele) {
+    msg += `📍 *Endereço:* ${end}\n`;
+    msg += `🔖 *Referência:* ${ref}\n`;
+  }
+  msg += `\n📋 *ITENS:*\n`;
 
   let subtotal = 0;
   document.querySelectorAll('.card[data-preco]').forEach(card => {
@@ -595,28 +513,22 @@ document.getElementById('btnFinalizar').addEventListener('click', () => {
       const preco = parseFloat(card.dataset.preco);
       const sub   = qtd * preco;
       subtotal += sub;
-
-      // sabores pizza
-      const sabores = [...card.querySelectorAll('.sabor-sel')]
-        .map(s => s.value).filter(v => v)
-        .join(' / ');
-      const sabStr = sabores ? ` · Sabores: ${sabores}` : '';
-
-      // obs do card
-      const obsEl = card.querySelector('.obs-card');
-      const obsStr = obsEl && obsEl.value.trim() ? ` · Obs: ${obsEl.value.trim()}` : '';
-
+      const sabores = [...card.querySelectorAll('.sabor-sel')].map(s => s.value).filter(v => v).join(' / ');
+      const sabStr  = sabores ? ` · Sabores: ${sabores}` : '';
+      const obsEl   = card.querySelector('.obs-card');
+      const obsStr  = obsEl && obsEl.value.trim() ? ` · Obs: ${obsEl.value.trim()}` : '';
       msg += `• ${qtd}× ${nome}${sabStr}${obsStr} — R$ ${sub.toLocaleString('pt-BR',{minimumFractionDigits:2})}\n`;
     }
   });
 
-  const total = subtotal + TAXA;
-  msg += `\n🛵 *Taxa de entrega:* R$ 5,00\n`;
+  const taxa  = isTele ? TAXA : 0;
+  const total = subtotal + taxa;
+  if(isTele) msg += `\n🛵 *Taxa de entrega:* R$ 5,00\n`;
   msg += `💰 *TOTAL: R$ ${total.toLocaleString('pt-BR',{minimumFractionDigits:2})}*\n`;
   msg += `\n💳 *Pagamento:* ${pagSel}\n`;
   msg += `🖨️ *Maquininha:* ${maq}\n`;
-  msg += `💵 *Troco para:* ${troco}\n\n`;
-  msg += `_Aguardando confirmação — obrigado!_ 🙏`;
+  if(pagSel === 'Dinheiro') msg += `💵 *Troco para:* ${troco}\n`;
+  msg += `\n_Aguardando confirmação — obrigado!_ 🙏`;
 
   window.open(`https://wa.me/5551991872470?text=${encodeURIComponent(msg)}`, '_blank');
 });
@@ -624,14 +536,13 @@ document.getElementById('btnFinalizar').addEventListener('click', () => {
 // ── NAV ATIVO ──
 const secs  = document.querySelectorAll('.sec-titulo');
 const pills = document.querySelectorAll('.cat-pill');
-const obs = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting) {
+    if(e.isIntersecting)
       pills.forEach(p => p.classList.toggle('ativo', p.getAttribute('href') === '#' + e.target.id));
-    }
   });
 }, {rootMargin:'-25% 0px -65% 0px'});
-secs.forEach(s => obs.observe(s));
+secs.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
