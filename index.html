@@ -1,12 +1,596 @@
-<!-- BEBIDAS -->
-    <h2 class="sec-titulo" id="sec-bebidas"><i class="fa-solid fa-bottle-water"></i> Bebidas</h2>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&R Lanches e Pizzas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --laranja: #ff5100;
+  --laranja2: #ff2a00;
+  --ouro: #ffb703;
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #181818;
+  --card: #141414;
+  --borda: #252525;
+  --cinza: #888;
+  --verde: #25d366;
+  --verde2: #1ebd52;
+  --branco: #ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--branco);line-height:1.5;padding-bottom:90px;}
+
+/* ─── HEADER ─── */
+header{
+  background:rgba(10,10,10,.92);
+  padding:13px 20px;
+  position:sticky;top:0;z-index:300;
+  border-bottom:2px solid var(--laranja);
+  backdrop-filter:blur(14px);
+}
+.hd{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;line-height:1;}
+.logo em{color:var(--laranja);font-style:normal;}
+.aberto{
+  background:var(--verde);color:#000;
+  padding:5px 14px;border-radius:30px;
+  font-weight:800;font-size:12px;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:0 0 14px rgba(37,211,102,.4);
+  animation:pisca 2.2s infinite;
+}
+.aberto::before{content:'';width:7px;height:7px;background:#000;border-radius:50%;}
+@keyframes pisca{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  height:460px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1600') no-repeat center/cover;
+  transform:scale(1.04);
+  filter:brightness(.45);
+  transition:transform 8s ease;
+}
+.hero:hover .hero-bg{transform:scale(1);}
+.hero-fade{position:absolute;bottom:0;left:0;width:100%;height:160px;background:linear-gradient(transparent,var(--bg));pointer-events:none;}
+.hero-fade-top{position:absolute;top:0;left:0;width:100%;height:60px;background:linear-gradient(var(--bg),transparent);pointer-events:none;}
+.hero-c{position:relative;z-index:2;max-width:700px;padding:0 20px;}
+.hero-sup{
+  font-family:'Pacifico',cursive;
+  color:var(--ouro);font-size:30px;
+  transform:rotate(-2.5deg);display:inline-block;
+  text-shadow:2px 2px 8px rgba(0,0,0,.9);
+  margin-bottom:4px;
+}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(60px,12vw,90px);
+  line-height:.88;letter-spacing:2px;
+  text-shadow:0 4px 20px rgba(255,81,0,.7),0 2px 0 rgba(0,0,0,.9);
+  margin-bottom:14px;
+}
+.hero p{font-size:16px;color:#ddd;margin-bottom:26px;text-shadow:0 1px 4px rgba(0,0,0,.9);}
+.hero-btn{
+  background:linear-gradient(135deg,var(--laranja),var(--laranja2));
+  color:#fff;text-decoration:none;
+  padding:13px 32px;font-size:14px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.5px;
+  border-radius:50px;
+  box-shadow:0 4px 22px rgba(255,81,0,.45);
+  transition:.25s;display:inline-block;
+}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,81,0,.6);}
+
+/* ─── WRAPPER CONTEÚDO ─── */
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px;}
+
+/* ─── ENDEREÇO ─── */
+.bloco-end{
+  background:var(--bg2);
+  border:2px solid var(--laranja);
+  border-radius:16px;
+  padding:22px 24px;
+  margin:32px auto;
+  max-width:860px;
+  box-shadow:0 8px 30px rgba(0,0,0,.6);
+}
+.bloco-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.end-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;}
+@media(max-width:560px){.end-grid{grid-template-columns:1fr;}}
+.campo label{display:block;font-size:11px;font-weight:700;color:#aaa;margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase;}
+.inp{
+  width:100%;background:#1c1c1c;border:1px solid #2e2e2e;
+  color:#fff;padding:11px 14px;border-radius:9px;font-size:13px;
+  transition:.25s;
+}
+.inp:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(255,81,0,.1);}
+
+/* ─── CATEGORIAS NAV ─── */
+.cat-nav{
+  display:flex;gap:8px;overflow-x:auto;
+  padding:6px 0 14px;scrollbar-width:none;
+  position:sticky;top:54px;z-index:200;
+  background:var(--bg);
+  padding-top:10px;
+  border-bottom:1px solid var(--borda);
+  margin-bottom:6px;
+}
+.cat-nav::-webkit-scrollbar{display:none;}
+.cat-pill{
+  flex-shrink:0;background:var(--bg3);border:1px solid var(--borda);
+  color:#aaa;padding:7px 16px;border-radius:30px;font-size:12px;
+  font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap;
+  text-decoration:none;display:inline-block;
+}
+.cat-pill:hover,.cat-pill.ativo{background:var(--laranja);border-color:var(--laranja);color:#fff;}
+
+/* ─── TÍTULO CATEGORIA ─── */
+.sec-titulo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:38px;color:var(--laranja);
+  display:flex;align-items:center;gap:10px;
+  margin:44px 0 20px;
+  scroll-margin-top:110px;
+}
+
+/* ─── GRID ITENS ─── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+
+/* ─── CARD ─── */
+.card{
+  background:var(--card);border:1px solid var(--borda);
+  border-radius:13px;transition:.25s;
+  display:flex;flex-direction:column;
+}
+.card:hover{border-color:var(--laranja);transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,81,0,.13);}
+.card-body{padding:16px 17px;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:6px;}
+.card-nome{font-weight:700;font-size:15px;color:#fff;}
+.card-preco{font-weight:800;font-size:14px;color:var(--ouro);}
+.card-desc{font-size:12px;color:var(--cinza);line-height:1.5;}
+
+/* Caixa de multiplos sabores */
+.sel-wrap{margin-top:8px;}
+.sel-wrap label{display:block;font-size:11px;font-weight:700;color:var(--ouro);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+.sabores-box {
+  background: #1c1c1c;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  padding: 8px 10px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+.sabores-box span.grupo-tit {
+  display: block;
+  font-size: 10px;
+  color: #777;
+  font-weight: 700;
+  margin: 6px 0 3px 0;
+  text-transform: uppercase;
+}
+.sabores-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.sabores-lista label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
+  cursor: pointer;
+}
+.sabores-lista input[type="checkbox"] {
+  accent-color: var(--laranja);
+  cursor: pointer;
+}
+
+/* controle qtd */
+.qtd-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#1c1c1c;border-radius:9px;padding:8px 12px;
+  margin-top:12px;
+}
+.qtd-row span{font-size:12px;color:#aaa;}
+.qtd-acoes{display:flex;align-items:center;gap:10px;}
+.qtd-btn{
+  background:var(--laranja);border:none;color:#fff;
+  width:30px;height:30px;border-radius:7px;
+  font-size:18px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;line-height:1;
+}
+.qtd-btn:hover{background:var(--laranja2);}
+.qtd-btn:active{transform:scale(.93);}
+.qtd-num{font-weight:800;font-size:16px;min-width:22px;text-align:center;}
+.card.tem-item{border-color:var(--ouro) !important;box-shadow:0 0 0 1px var(--ouro);}
+
+/* ─── PAGAMENTO ─── */
+.bloco-pag{
+  background:var(--bg2);border:1px solid var(--borda);
+  border-radius:16px;padding:22px 24px;
+  margin:40px auto;max-width:860px;
+}
+.pag-titulo{font-size:14px;font-weight:700;color:var(--ouro);display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.pag-sub{font-size:11px;color:var(--cinza);margin-bottom:18px;}
+
+/* opções pagamento */
+.pag-opcoes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+.pag-opt{
+  flex:1 1 130px;
+  background:#1c1c1c;border:2px solid #2e2e2e;
+  border-radius:10px;padding:11px 14px;
+  cursor:pointer;transition:.2s;
+  display:flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:600;
+  user-select:none;
+}
+.pag-opt:hover{border-color:#444;}
+.pag-opt.sel{border-color:var(--laranja);background:rgba(255,81,0,.08);color:#fff;}
+.pag-opt i{font-size:16px;color:var(--laranja);}
+
+/* toggle maquininha */
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#1c1c1c;border-radius:10px;padding:13px 15px;
+  margin-bottom:16px;cursor:pointer;
+}
+.toggle-info strong{font-size:13px;display:block;}
+.toggle-info small{font-size:11px;color:var(--cinza);}
+.toggler{position:relative;width:46px;height:25px;flex-shrink:0;}
+.toggler input{opacity:0;width:0;height:0;position:absolute;}
+.tog-slider{position:absolute;inset:0;background:#333;border-radius:25px;transition:.3s;cursor:pointer;}
+.tog-slider::before{content:'';position:absolute;width:19px;height:19px;background:#fff;border-radius:50%;left:3px;top:3px;transition:.3s;}
+.toggler input:checked + .tog-slider{background:var(--laranja);}
+.toggler input:checked + .tog-slider::before{transform:translateX(21px);}
+
+/* troco e obs */
+.campo-mt{margin-top:14px;}
+
+/* ─── LOJA INFO ─── */
+.bloco-loja{
+  background:var(--bg2);border:1px solid var(--borda);
+  border-radius:16px;padding:22px;
+  margin:0 auto 20px;max-width:860px;
+  text-align:center;
+}
+.loja-nome{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--ouro);margin-bottom:10px;}
+.loja-item{font-size:13px;color:var(--cinza);margin:5px 0;display:flex;align-items:center;justify-content:center;gap:7px;}
+.loja-item i{color:var(--laranja);width:14px;text-align:center;}
+
+/* ─── BARRA FLUTUANTE ─── */
+.barra{
+  position:fixed;bottom:0;left:0;width:100%;z-index:400;
+  background:#0f0f0f;border-top:2px solid var(--laranja);
+  padding:10px 20px;
+  box-shadow:0 -6px 24px rgba(0,0,0,.7);
+  transform:translateY(0);transition:.3s;
+}
+.barra-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.barra-esq{display:flex;flex-direction:column;}
+.barra-label{font-size:10px;font-weight:700;color:var(--cinza);letter-spacing:.8px;text-transform:uppercase;}
+.barra-total{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--ouro);line-height:1;}
+.barra-qtd{font-size:11px;color:var(--cinza);margin-top:1px;}
+.btn-wpp{
+  background:var(--verde);color:#000;
+  font-weight:800;font-size:14px;
+  padding:12px 22px;border-radius:50px;
+  border:none;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  transition:.25s;white-space:nowrap;
+  opacity:.4;pointer-events:none;
+}
+.btn-wpp.ativo{opacity:1;pointer-events:auto;}
+.btn-wpp.ativo:hover{background:var(--verde2);transform:scale(1.04);}
+.btn-wpp i{font-size:18px;}
+
+@media(max-width:440px){
+  .barra-total{font-size:24px;}
+  .btn-wpp{font-size:12px;padding:10px 16px;}
+  .hero h1{font-size:58px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hd">
+    <div class="logo">M<em>&</em>R Lanches</div>
+    <div class="aberto"><i class="fa-solid fa-circle-check"></i> ABERTO 18H–00H</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-fade-top"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-c">
+    <div class="hero-sup">O pedido mais saboroooso de Porto Alegre!</div>
+    <h1>Lanches &amp; Pizzas</h1>
+    <p>Entrega rápida e sabor incomparável na sua porta</p>
+    <a href="#cardapio" class="hero-btn"><i class="fa-solid fa-utensils" style="margin-right:7px;"></i>Ver Cardápio</a>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- NAV CATEGORIAS -->
+  <nav class="cat-nav" id="catNav">
+    <a class="cat-pill ativo" href="#sec-picados">🍟 Picados</a>
+    <a class="cat-pill" href="#sec-xis">🍔 Xis</a>
+    <a class="cat-pill" href="#sec-torradas">🍞 Torradas</a>
+    <a class="cat-pill" href="#sec-hamburguer">🍔 Hambúrguer</a>
+    <a class="cat-pill" href="#sec-cq">🌭 Cachorro Quente</a>
+    <a class="cat-pill" href="#sec-pizzas">🍕 Pizzas</a>
+    <a class="cat-pill" href="#sec-bebidas">🥤 Bebidas</a>
+  </nav>
+
+  <!-- ════ CARDÁPIO ════ -->
+  <main id="cardapio">
+
+    <!-- PICADOS & PORÇÕES -->
+    <h2 class="sec-titulo" id="sec-picados"><i class="fa-solid fa-pot-food"></i> Picados &amp; Porções</h2>
     <div class="grid">
       
-      <!-- Imagem promocional das bebidas -->
       <div class="card" style="border: none; background: transparent; box-shadow: none;">
-        <img src="bebidas.png" alt="Nossas Bebidas" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
+        <img src="picado.png" alt="Picado Especial" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
+      </div>
+      
+      <div class="card" data-preco="90.00"><div class="card-body"><p class="card-nome">Picado Médio Tradicional</p><p class="card-preco">R$ 90,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="80.00"><div class="card-body"><p class="card-nome">Picado Pequeno Tradicional</p><p class="card-preco">R$ 80,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      
+      <div class="card" data-preco="25.00"><div class="card-body"><p class="card-nome">Porção Fritas Pequena</p><p class="card-preco">R$ 25,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="30.00"><div class="card-body"><p class="card-nome">Porção Fritas Média</p><p class="card-preco">R$ 30,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="35.00"><div class="card-body"><p class="card-nome">Porção Fritas Pequena Coração</p><p class="card-preco">R$ 35,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="40.00"><div class="card-body"><p class="card-nome">Porção Fritas Média Bacon Cheddar</p><p class="card-preco">R$ 40,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="30.00"><div class="card-body"><p class="card-nome">Porção Fritas Pequena Bacon Cheddar</p><p class="card-preco">R$ 30,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="45.00"><div class="card-body"><p class="card-nome">Porção Fritas Média Coração</p><p class="card-preco">R$ 45,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    
+    </div>
+
+    <!-- XIS -->
+    <h2 class="sec-titulo" id="sec-xis"><i class="fa-solid fa-burger"></i> Xis</h2>
+    <div class="grid">
+      <div class="card" data-preco="19.90"><div class="card-body"><p class="card-nome">Xis Carne</p><p class="card-preco">R$ 19,90</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Frango</p><p class="card-preco">R$ 22,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Xis Frango c/ Catupiry</p><p class="card-preco">R$ 24,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="27.00"><div class="card-body"><p class="card-nome">Xis Strogonoff</p><p class="card-preco">R$ 27,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Calabresa</p><p class="card-preco">R$ 22,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Xis Bacon</p><p class="card-preco">R$ 24,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="28.00"><div class="card-body"><p class="card-nome">Xis Coração</p><p class="card-preco">R$ 28,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="29.00"><div class="card-body"><p class="card-nome">Xis Filé</p><p class="card-preco">R$ 29,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="22.00"><div class="card-body"><p class="card-nome">Xis Acebolado</p><p class="card-preco">R$ 22,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- TORRADAS -->
+    <h2 class="sec-titulo" id="sec-torradas"><i class="fa-solid fa-bread-slice"></i> Torradas</h2>
+    <div class="grid">
+      <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Torrada Simples</p><p class="card-preco">R$ 10,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Torrada com Carne</p><p class="card-preco">R$ 15,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- HAMBÚRGUER -->
+    <h2 class="sec-titulo" id="sec-hamburguer"><i class="fa-solid fa-burger"></i> Hambúrguer</h2>
+    <div class="grid">
+      <div class="card" data-preco="19.90"><div class="card-body"><p class="card-nome">Hambúrguer Simples</p><p class="card-preco">R$ 19,90</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="24.00"><div class="card-body"><p class="card-nome">Hambúrguer Duplo</p><p class="card-preco">R$ 24,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- CACHORRO QUENTE -->
+    <h2 class="sec-titulo" id="sec-cq"><i class="fa-solid fa-hotdog"></i> Cachorro Quente</h2>
+    <div class="grid">
+      <div class="card" data-preco="13.00"><div class="card-body"><p class="card-nome">Cachorro Quente Simples</p><p class="card-preco">R$ 13,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="15.00"><div class="card-body"><p class="card-nome">Cachorro Quente Duplo</p><p class="card-preco">R$ 15,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="16.00"><div class="card-body"><p class="card-nome">Cachorro Quente Calabresa</p><p class="card-preco">R$ 16,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="17.00"><div class="card-body"><p class="card-nome">Cachorro Quente Linguiça</p><p class="card-preco">R$ 17,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="18.00"><div class="card-body"><p class="card-nome">Cachorro Quente Frango</p><p class="card-preco">R$ 18,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+      <div class="card" data-preco="19.00"><div class="card-body"><p class="card-nome">Cachorro Quente Coração</p><p class="card-preco">R$ 19,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
+    </div>
+
+    <!-- PIZZAS -->
+    <h2 class="sec-titulo" id="sec-pizzas"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
+    <div class="grid">
+
+      <!-- Imagem promocional da pizza -->
+      <div class="card" style="border: none; background: transparent; box-shadow: none;">
+        <img src="pizza.png" alt="Nossas Pizzas" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
       </div>
 
+      <!-- Pizza Família -->
+      <div class="card" data-preco="90.00">
+        <div class="card-body">
+          <div>
+            <p class="card-nome">Pizza Família</p>
+            <p class="card-preco">R$ 90,00</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- Pizza Família Combo -->
+      <div class="card" data-preco="110.00">
+        <div class="card-body">
+          <div>
+            <p class="card-nome">Pizza Família Combo</p>
+            <p class="card-preco">R$ 110,00</p>
+            <p class="card-desc">Acompanha bebida inclusa.</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- Pizza Média -->
+      <div class="card" data-preco="65.00">
+        <div class="card-body">
+          <div>
+            <p class="card-nome">Pizza Média</p>
+            <p class="card-preco">R$ 65,00</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- Pizza Média Combo -->
+      <div class="card" data-preco="90.00">
+        <div class="card-body">
+          <div>
+            <p class="card-nome">Pizza Média Combo</p>
+            <p class="card-preco">R$ 90,00</p>
+            <p class="card-desc">Acompanha bebida inclusa.</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BEBIDAS -->
+    <h2 class="sec-titulo" id="sec-bebidas"><i class="fa-solid fa-bottle-water"></i> Bebidas</h2>
+    <div class="grid">
       <div class="card" data-preco="6.00"><div class="card-body"><p class="card-nome">Coca-Cola Lata 350ml</p><p class="card-preco">R$ 6,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="10.00"><div class="card-body"><p class="card-nome">Coca-Cola 600ml</p><p class="card-preco">R$ 10,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="6.00"><div class="card-body"><p class="card-nome">Guaraná Antarctica Lata 350ml</p><p class="card-preco">R$ 6,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
@@ -14,3 +598,49 @@
       <div class="card" data-preco="4.00"><div class="card-body"><p class="card-nome">Água Mineral 500ml</p><p class="card-preco">R$ 4,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
       <div class="card" data-preco="7.00"><div class="card-body"><p class="card-nome">Suco de Caixinha</p><p class="card-preco">R$ 7,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
+
+    <!-- ENDEREÇO -->
+    <div class="bloco-end" style="margin:48px 0 0;">
+      <div class="bloco-titulo"><i class="fa-solid fa-location-dot"></i> Endereço de Entrega</div>
+      <div class="end-grid">
+        <div class="campo">
+          <label>Endereço completo</label>
+          <input type="text" id="enderecoEntrega" class="inp" placeholder="Rua, Número, Bairro, Complemento">
+        </div>
+        <div class="campo">
+          <label>Ponto de Referência</label>
+          <input type="text" id="pontoRef" class="inp" placeholder="Perto de onde?">
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGAMENTO -->
+    <div class="bloco-pag" style="margin-top:20px;">
+      <div class="pag-titulo"><i class="fa-solid fa-sack-dollar"></i> Forma de Pagamento</div>
+      <p class="pag-sub">Escolha abaixo como prefere pagar hoje.</p>
+
+      <div class="pag-opcoes">
+        <div class="pag-opt sel" data-pag="Dinheiro"><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</div>
+        <div class="pag-opt" data-pag="Pix"><i class="fa-brands fa-pix"></i> Pix</div>
+        <div class="pag-opt" data-pag="Cartão"><i class="fa-solid fa-credit-card"></i> Cartão</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Função essencial para travar o limite máximo em 4 sabores selecionados
+function validaSabores(checkbox) {
+  const container = checkbox.closest('.sabores-box');
+  const marcados = container.querySelectorAll('input[type="checkbox"]:checked');
+  
+  if (marcados.length > 4) {
+    alert("Você pode selecionar no máximo 4 sabores para esta pizza!");
+    checkbox.checked = false;
+  }
+}
+</script>
+
+</body>
+</html>
