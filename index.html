@@ -155,26 +155,55 @@ header{
   display:flex;flex-direction:column;
 }
 .card:hover{border-color:var(--laranja);transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,81,0,.13);}
-.card-body{padding:16px 17px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.card-body{padding:16px 17px;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:6px;}
 .card-nome{font-weight:700;font-size:15px;color:#fff;}
 .card-preco{font-weight:800;font-size:14px;color:var(--ouro);}
 .card-desc{font-size:12px;color:var(--cinza);line-height:1.5;}
 
-/* select sabor */
-.sel-wrap{margin-top:2px;}
-.sel-wrap label{display:block;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
-.sel-wrap select{
-  width:100%;background:#1c1c1c;border:1px solid #2e2e2e;
-  color:#ccc;padding:8px 10px;border-radius:8px;font-size:12px;
-  cursor:pointer;
+/* Caixa de multiplos sabores */
+.sel-wrap{margin-top:8px;}
+.sel-wrap label{display:block;font-size:11px;font-weight:700;color:var(--ouro);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+.sabores-box {
+  background: #1c1c1c;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  padding: 8px 10px;
+  max-height: 120px;
+  overflow-y: auto;
 }
-.sel-wrap select:focus{outline:none;border-color:var(--laranja);}
+.sabores-box span.grupo-tit {
+  display: block;
+  font-size: 10px;
+  color: #777;
+  font-weight: 700;
+  margin: 6px 0 3px 0;
+  text-transform: uppercase;
+}
+.sabores-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.sabores-lista label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
+  cursor: pointer;
+}
+.sabores-lista input[type="checkbox"] {
+  accent-color: var(--laranja);
+  cursor: pointer;
+}
 
 /* controle qtd */
 .qtd-row{
   display:flex;align-items:center;justify-content:space-between;
   background:#1c1c1c;border-radius:9px;padding:8px 12px;
-  margin-top:auto;padding-top:10px;
+  margin-top:12px;
 }
 .qtd-row span{font-size:12px;color:#aaa;}
 .qtd-acoes{display:flex;align-items:center;gap:10px;}
@@ -374,110 +403,184 @@ header{
       <div class="card" data-preco="19.00"><div class="card-body"><p class="card-nome">Cachorro Quente Coração</p><p class="card-preco">R$ 19,00</p><div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div></div></div>
     </div>
 
-  <!-- PIZZAS -->
+    <!-- PIZZAS -->
     <h2 class="sec-titulo" id="sec-pizzas"><i class="fa-solid fa-pizza-slice"></i> Pizzas</h2>
     <div class="grid">
 
-      <!-- Imagem promocional da pizza com bloco invisível e cantos arredondados -->
+      <!-- Imagem promocional da pizza -->
       <div class="card" style="border: none; background: transparent; box-shadow: none;">
         <img src="pizza.png" alt="Nossas Pizzas" style="width: 100%; height: 100%; object-fit: cover; border-radius: 13px;">
       </div>
 
+      <!-- Pizza Família -->
       <div class="card" data-preco="90.00">
         <div class="card-body">
-          <p class="card-nome">Pizza Família</p>
-          <p class="card-preco">R$ 90,00</p>
-          <div class="sel-wrap">
-            <label>Sabor</label>
-            <select class="sabor-sel">
-              <option value="">Selecione o sabor…</option>
-              <optgroup label="— Salgados —">
-                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
-                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
-                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
-                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
-                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
-              </optgroup>
-              <optgroup label="— Doces —">
-                <option>Chocolate Preto</option><option>Chocolate Branco</option>
-                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
-              </optgroup>
-            </select>
+          <div>
+            <p class="card-nome">Pizza Família</p>
+            <p class="card-preco">R$ 90,00</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
       </div>
 
+      <!-- Pizza Família Combo -->
       <div class="card" data-preco="110.00">
         <div class="card-body">
-          <p class="card-nome">Pizza Família Combo</p>
-          <p class="card-preco">R$ 110,00</p>
-          <p class="card-desc">Acompanha bebida inclusa.</p>
-          <div class="sel-wrap">
-            <label>Sabor</label>
-            <select class="sabor-sel">
-              <option value="">Selecione o sabor…</option>
-              <optgroup label="— Salgados —">
-                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
-                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
-                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
-                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
-                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
-              </optgroup>
-              <optgroup label="— Doces —">
-                <option>Chocolate Preto</option><option>Chocolate Branco</option>
-                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
-        </div>
-       <div class="card" data-preco="65.00">
-        <div class="card-body">
-          <p class="card-nome">Pizza Média</p>
-          <p class="card-preco">R$ 65,00</p>
-          <div class="sel-wrap">
-            <label>Sabor</label>
-            <select class="sabor-sel">
-              <option value="">Selecione o sabor…</option>
-              <optgroup label="— Salgados —">
-                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
-                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
-                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
-                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
-                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
-              </optgroup>
-              <optgroup label="— Doces —">
-                <option>Chocolate Preto</option><option>Chocolate Branco</option>
-                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
-              </optgroup>
-            </select>
+          <div>
+            <p class="card-nome">Pizza Família Combo</p>
+            <p class="card-preco">R$ 110,00</p>
+            <p class="card-desc">Acompanha bebida inclusa.</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
       </div>
 
+      <!-- Pizza Média -->
+      <div class="card" data-preco="65.00">
+        <div class="card-body">
+          <div>
+            <p class="card-nome">Pizza Média</p>
+            <p class="card-preco">R$ 65,00</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
+        </div>
+      </div>
+
+      <!-- Pizza Média Combo -->
       <div class="card" data-preco="90.00">
         <div class="card-body">
-          <p class="card-nome">Pizza Média Combo</p>
-          <p class="card-preco">R$ 90,00</p>
-          <p class="card-desc">Acompanha bebida inclusa.</p>
-          <div class="sel-wrap">
-            <label>Sabor</label>
-            <select class="sabor-sel">
-              <option value="">Selecione o sabor…</option>
-              <optgroup label="— Salgados —">
-                <option>Azeitonas</option><option>Alho e Óleo</option><option>Calabresa</option>
-                <option>Coração</option><option>Portuguesa</option><option>Frango c/ Catupiry</option>
-                <option>Mussarela</option><option>4 Queijos</option><option>Bacon</option>
-                <option>Milho</option><option>Strogonoff</option><option>Presunto</option>
-                <option>Napolitana</option><option>Moda da Casa</option><option>Brócolis</option><option>Siciliana</option>
-              </optgroup>
-              <optgroup label="— Doces —">
-                <option>Chocolate Preto</option><option>Chocolate Branco</option>
-                <option>Chocolate c/ M&M's</option><option>Banana c/ Gemada</option><option>Prestígio</option>
-              </optgroup>
-            </select>
+          <div>
+            <p class="card-nome">Pizza Média Combo</p>
+            <p class="card-preco">R$ 90,00</p>
+            <p class="card-desc">Acompanha bebida inclusa.</p>
+            <div class="sel-wrap">
+              <label>Sabores (Até 4)</label>
+              <div class="sabores-box">
+                <span class="grupo-tit">— Salgados —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Azeitonas" onchange="validaSabores(this)"> Azeitonas</label>
+                  <label><input type="checkbox" value="Alho e Óleo" onchange="validaSabores(this)"> Alho e Óleo</label>
+                  <label><input type="checkbox" value="Calabresa" onchange="validaSabores(this)"> Calabresa</label>
+                  <label><input type="checkbox" value="Coração" onchange="validaSabores(this)"> Coração</label>
+                  <label><input type="checkbox" value="Portuguesa" onchange="validaSabores(this)"> Portuguesa</label>
+                  <label><input type="checkbox" value="Frango c/ Catupiry" onchange="validaSabores(this)"> Frango c/ Catupiry</label>
+                  <label><input type="checkbox" value="Mussarela" onchange="validaSabores(this)"> Mussarela</label>
+                  <label><input type="checkbox" value="4 Queijos" onchange="validaSabores(this)"> 4 Queijos</label>
+                  <label><input type="checkbox" value="Bacon" onchange="validaSabores(this)"> Bacon</label>
+                  <label><input type="checkbox" value="Milho" onchange="validaSabores(this)"> Milho</label>
+                  <label><input type="checkbox" value="Strogonoff" onchange="validaSabores(this)"> Strogonoff</label>
+                  <label><input type="checkbox" value="Presunto" onchange="validaSabores(this)"> Presunto</label>
+                  <label><input type="checkbox" value="Napolitana" onchange="validaSabores(this)"> Napolitana</label>
+                  <label><input type="checkbox" value="Moda da Casa" onchange="validaSabores(this)"> Moda da Casa</label>
+                  <label><input type="checkbox" value="Brócolis" onchange="validaSabores(this)"> Brócolis</label>
+                  <label><input type="checkbox" value="Siciliana" onchange="validaSabores(this)"> Siciliana</label>
+                </div>
+                <span class="grupo-tit">— Doces —</span>
+                <div class="sabores-lista">
+                  <label><input type="checkbox" value="Chocolate Preto" onchange="validaSabores(this)"> Chocolate Preto</label>
+                  <label><input type="checkbox" value="Chocolate Branco" onchange="validaSabores(this)"> Chocolate Branco</label>
+                  <label><input type="checkbox" value="Chocolate c/ M&M's" onchange="validaSabores(this)"> Chocolate c/ M&M's</label>
+                  <label><input type="checkbox" value="Banana c/ Gemada" onchange="validaSabores(this)"> Banana c/ Gemada</label>
+                  <label><input type="checkbox" value="Prestígio" onchange="validaSabores(this)"> Prestígio</label>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="qtd-row"><span>Quantidade</span><div class="qtd-acoes"><button class="qtd-btn menos">−</button><span class="qtd-num">0</span><button class="qtd-btn mais">+</button></div></div>
         </div>
@@ -519,165 +622,25 @@ header{
       <div class="pag-opcoes">
         <div class="pag-opt sel" data-pag="Dinheiro"><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</div>
         <div class="pag-opt" data-pag="Pix"><i class="fa-brands fa-pix"></i> Pix</div>
-        <div class="pag-opt" data-pag="Cartão de Crédito"><i class="fa-solid fa-credit-card"></i> Crédito</div>
-        <div class="pag-opt" data-pag="Cartão de Débito"><i class="fa-solid fa-credit-card"></i> Débito</div>
+        <div class="pag-opt" data-pag="Cartão"><i class="fa-solid fa-credit-card"></i> Cartão</div>
       </div>
-
-      <div class="toggle-row" onclick="document.getElementById('maqChk').click()">
-        <div class="toggle-info">
-          <strong>🖨️ Precisa de maquininha?</strong>
-          <small>Levamos até você sem custo extra</small>
-        </div>
-        <label class="toggler" onclick="event.stopPropagation()">
-          <input type="checkbox" id="maqChk">
-          <span class="tog-slider"></span>
-        </label>
-      </div>
-
-      <div class="campo campo-mt" id="trocoWrap">
-        <label>Troco para quanto? <span style="font-weight:400;color:#555;">(só se for dinheiro)</span></label>
-        <input type="text" id="valorTroco" class="inp" placeholder="Ex: R$ 50,00 — deixe em branco se não precisar">
-      </div>
-
-      <div class="campo campo-mt">
-        <label>Observações</label>
-        <textarea id="obs" class="inp" rows="3" placeholder="Ex: Sem cebola, pizza bem assada…"></textarea>
-      </div>
-    </div>
-
-    <!-- DADOS LOJA -->
-    <div class="bloco-loja">
-      <p class="loja-nome">M&amp;R Lanches e Pizzas</p>
-      <p class="loja-item"><i class="fa-solid fa-location-dot"></i> Av. Bernardino Silveira Amorim, 2147 — Porto Alegre, RS</p>
-      <p class="loja-item"><i class="fa-solid fa-phone"></i> (51) 99187-2470</p>
-      <p class="loja-item"><i class="fa-solid fa-clock"></i> Todos os dias · 18h às 00h</p>
     </div>
 
   </main>
-</div><!-- /wrap -->
-
-<!-- BARRA FLUTUANTE -->
-<div class="barra">
-  <div class="barra-inner">
-    <div class="barra-esq">
-      <span class="barra-label">Total do Pedido</span>
-      <span class="barra-total" id="barraTotal">R$ 0,00</span>
-      <span class="barra-qtd" id="barraQtd">Adicione itens para começar</span>
-    </div>
-    <button class="btn-wpp" id="btnFinalizar">
-      <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido
-    </button>
-  </div>
 </div>
 
 <script>
-// ── ENDEREÇO SALVO ──
-const endEl = document.getElementById('enderecoEntrega');
-const refEl = document.getElementById('pontoRef');
-if(localStorage.getItem('mrEnd')) endEl.value = localStorage.getItem('mrEnd');
-if(localStorage.getItem('mrRef')) refEl.value = localStorage.getItem('mrRef');
-endEl.addEventListener('input', () => localStorage.setItem('mrEnd', endEl.value));
-refEl.addEventListener('input', () => localStorage.setItem('mrRef', refEl.value));
-
-// ── FORMA DE PAGAMENTO ──
-let pagSel = 'Dinheiro';
-document.querySelectorAll('.pag-opt').forEach(opt => {
-  opt.addEventListener('click', () => {
-    document.querySelectorAll('.pag-opt').forEach(o => o.classList.remove('sel'));
-    opt.classList.add('sel');
-    pagSel = opt.dataset.pag;
-  });
-});
-
-// ── RECALCULAR TOTAL ──
-function recalc() {
-  let total = 0, qtdTotal = 0;
-  document.querySelectorAll('.card[data-preco]').forEach(card => {
-    const qtd = parseInt(card.querySelector('.qtd-num').innerText);
-    const preco = parseFloat(card.dataset.preco);
-    total += qtd * preco;
-    qtdTotal += qtd;
-    // destaca card com item
-    card.classList.toggle('tem-item', qtd > 0);
-  });
-
-  document.getElementById('barraTotal').innerText = 'R$ ' + total.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
-  const btn = document.getElementById('btnFinalizar');
-  if(qtdTotal === 0){
-    document.getElementById('barraQtd').innerText = 'Adicione itens para começar';
-    btn.classList.remove('ativo');
-  } else {
-    document.getElementById('barraQtd').innerText = qtdTotal === 1 ? '1 item no pedido' : qtdTotal + ' itens no pedido';
-    btn.classList.add('ativo');
+// Função essencial para travar o limite máximo em 4 sabores selecionados
+function validaSabores(checkbox) {
+  const container = checkbox.closest('.sabores-box');
+  const marcados = container.querySelectorAll('input[type="checkbox"]:checked');
+  
+  if (marcados.length > 4) {
+    alert("Você pode selecionar no máximo 4 sabores para esta pizza!");
+    checkbox.checked = false;
   }
 }
-
-// ── BOTÕES +/− ──
-document.querySelectorAll('.card[data-preco]').forEach(card => {
-  const numEl = card.querySelector('.qtd-num');
-  card.querySelector('.mais').addEventListener('click', () => {
-    numEl.innerText = parseInt(numEl.innerText) + 1;
-    recalc();
-  });
-  card.querySelector('.menos').addEventListener('click', () => {
-    const v = parseInt(numEl.innerText);
-    if(v > 0){ numEl.innerText = v - 1; recalc(); }
-  });
-});
-
-// ── FINALIZAR ──
-document.getElementById('btnFinalizar').addEventListener('click', () => {
-  if(!document.getElementById('btnFinalizar').classList.contains('ativo')) return;
-
-  const end   = endEl.value.trim() || 'Não informado';
-  const ref   = refEl.value.trim() || 'Não informado';
-  const maq   = document.getElementById('maqChk').checked ? 'Sim ✅' : 'Não';
-  const troco = document.getElementById('valorTroco').value.trim() || 'Não precisa';
-  const obs   = document.getElementById('obs').value.trim() || 'Nenhuma';
-
-  let msg  = `*🍟 PEDIDO — M&R LANCHES E PIZZAS 🍕*\n\n`;
-  msg += `📍 *Endereço:* ${end}\n`;
-  msg += `🔖 *Referência:* ${ref}\n\n`;
-  msg += `📋 *ITENS:*\n`;
-
-  let total = 0;
-  document.querySelectorAll('.card[data-preco]').forEach(card => {
-    const qtd = parseInt(card.querySelector('.qtd-num').innerText);
-    if(qtd > 0){
-      const nome  = card.querySelector('.card-nome').innerText;
-      const preco = parseFloat(card.dataset.preco);
-      const saborEl = card.querySelector('.sabor-sel');
-      const sabor = saborEl && saborEl.value ? ` · ${saborEl.value}` : '';
-      const sub = qtd * preco;
-      total += sub;
-      msg += `• ${qtd}x ${nome}${sabor} — R$ ${sub.toLocaleString('pt-BR',{minimumFractionDigits:2})}\n`;
-    }
-  });
-
-  msg += `\n💰 *TOTAL: R$ ${total.toLocaleString('pt-BR',{minimumFractionDigits:2})}*\n`;
-  msg += `\n💳 *Pagamento:* ${pagSel}\n`;
-  msg += `🖨️ *Maquininha:* ${maq}\n`;
-  msg += `💵 *Troco para:* ${troco}\n`;
-  msg += `📝 *Obs:* ${obs}\n\n`;
-  msg += `_Aguardando confirmação — obrigado!_ 🙏`;
-
-  window.open(`https://wa.me/5551991872470?text=${encodeURIComponent(msg)}`, '_blank');
-});
-
-// ── NAV PILLS ATIVO ──
-const secs = document.querySelectorAll('.sec-titulo');
-const pills = document.querySelectorAll('.cat-pill');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      const id = e.target.id;
-      pills.forEach(p => {
-        p.classList.toggle('ativo', p.getAttribute('href') === '#' + id);
-      });
-    }
-  });
-}, {rootMargin:'-30% 0px -60% 0px'});
-secs.forEach(s => observer.observe(s));
 </script>
+
 </body>
 </html>
